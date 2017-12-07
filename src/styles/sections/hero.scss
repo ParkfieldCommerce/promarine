@@ -1,0 +1,85 @@
+.hero-slider {
+  height: 500px;
+  margin-top: 37px;
+  margin-bottom: 60px;
+  @include s() {
+    margin-top: 0px;
+    padding-top: 110px;
+    padding-bottom: 40px;
+    margin-bottom: 0px;
+    height: auto;
+    background-size: auto!important;
+    background-position: 0% 0%!important;
+  }
+  @include m() {
+    margin-bottom: 20px;
+  }
+
+  .slider,
+  .container,
+  .row {
+    height: inherit;
+  }
+
+  .column {
+    vertical-align: middle;
+  }
+
+  .hero-feature {
+    font-size: 36px;
+    text-shadow: $boxShadow;
+    font-family: 'Poppins';
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 22px;
+    @include s() {
+      font-size: 20px;
+    }
+  }
+
+  .hero-img-container {
+    text-align: center;
+    margin-top: 130px;
+    @include s() {
+      margin-top: 10px;
+    }
+    img {
+      width: 366px;
+      margin: auto;
+    }
+  }
+
+  .hero-prev {
+    position: absolute;
+    left: 29px;
+    top: 270px;
+    color: #fff;
+    font-size: 3em;
+    z-index: 9;
+    @include m() {
+      top: 220px
+    }
+    @include s() {
+      top: 40px;
+      left: 13px;
+    }
+  }
+
+  .hero-next {
+    position: absolute;
+    right: 29px;
+    top: 270px;
+    color: #000;
+    font-size: 3em;
+    z-index: 9;
+    @include m() {
+      top: 220px
+    }
+    @include s() {
+      top: 40px;
+      right: 13px;
+      color: #fff;
+    }
+  }
+
+}

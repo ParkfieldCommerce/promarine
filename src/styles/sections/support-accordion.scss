@@ -1,0 +1,102 @@
+.support-accordion {
+  font-family: 'Poppins';
+  padding: 40px 0;
+  margin: 40px 0;
+  @include s() {
+    padding: 0;
+  }
+
+  .heading {
+    font-family: 'Poppins';
+    font-weight: 500;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 80px;
+    @include s() {
+      margin-bottom: 40px;
+    }
+  }
+
+  .title-bar {
+    background: #00499E;
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 3px;
+    cursor: pointer;
+    box-shadow: $boxShadow;
+    @include s() {
+      padding: 10px 5px;
+      box-shadow: $boxShadow;
+    }
+    .lead {
+      font-size: 24px;
+      font-weight: 500;
+      font-family: 'Poppins';
+      display: inline-block;
+      margin: 0;
+      margin-left: 30px;
+      @include s() {
+        font-size: 14px;
+      }
+    }
+
+    .accordion-action {
+      font-size: 36px;
+      text-align: center;
+      width: 53px;
+      float: right;
+      margin: 5px 0;
+      @include s() {
+        font-size: 20px;
+        margin: 3px 0;
+      }
+
+      .fa.fa-minus {
+        display: none;
+      }
+    }
+  }
+
+  .pane {
+    padding: 40px;
+    display: none;
+    @include s() {
+      padding: 10px;
+    }
+
+    .support-block {
+      margin-bottom: 40px;
+      padding: 20px;
+
+      .title {
+        font-size: 24px;
+        font-weight: 500;
+        font-family: 'Poppins';
+        @include s() {
+          font-size: 18px;
+        }
+      }
+
+      .content {
+        font-size: 14px;
+        font-weight: 500;
+        height: 100px;
+        @include s() {
+          font-size: 14px;
+        }
+      }
+    }
+
+    .block-1,
+    .block-4,
+    .block-7 {
+      padding-left: 0;
+    }
+
+    .block-3,
+    .block-6,
+    .block-9 {
+      padding-right: 0;
+    }
+  }
+}

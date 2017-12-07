@@ -1,0 +1,85 @@
+<section class="support-accordion">
+  <div class="container l">
+    {% if section.settings.title != blank %}
+      <h2 class="heading">{{ section.settings.title | escape }}</h2>
+    {% endif %}
+    <div class="accordion">
+      {% for link in linklists['support-articles'].links %}
+        {%- assign blog = blogs[link.object.handle] -%}
+
+        <div class="title-bar" id="accordion-toggle">
+          <h3 class="lead">{{ blog.title }}</h3>
+          <div class="accordion-action">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            <i class="fa fa-minus" aria-hidden="true"></i>
+          </div>
+        </div>
+
+        <div class="pane">
+          <div class="row">
+
+            {% for article in blog.articles limit: section.settings.post_limit %}
+              <div class="column l4 m4 s12 block-{{forloop.index}}">
+                <div class="support-block">
+                  <h3 class="title">{{ article.title }}</h3>
+                  <p class="content">{{ article.excerpt }}</p>
+                  <a href="{{ article.url }}" class="btn support-btn">{{ 'blog.article.read_more' | t }}</a>
+                </div>
+              </div>
+            {% endfor %}
+
+          </div>
+        </div>
+
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Support Articles",
+  "class": "support-article-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Support Articles"
+    },
+    {
+      "type": "select",
+      "id": "post_limit",
+      "label": "Posts",
+      "default": "3",
+      "options": [
+        {
+          "value": "3",
+          "label": "3"
+        },
+        {
+          "value": "6",
+          "label": "6"
+        },
+        {
+          "value": "9",
+          "label": "9"
+        },
+        {
+          "value": "12",
+          "label": "12"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Support Articles",
+      "category": "Blog",
+      "settings": {
+        "post_limit": "3"
+      }
+    }
+  ]
+}
+{% endschema %}

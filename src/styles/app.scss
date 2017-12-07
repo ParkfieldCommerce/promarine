@@ -35,9 +35,23 @@
 @import url('modules/social.scss');
 @import url('modules/icon.scss');
 @import url('modules/product.scss');
+@import url('modules/buttons.scss');
+@import url('modules/collections.scss');
+
+/* Sections ===================================================================*/
+@import url('sections/hero.scss');
+@import url('sections/shop-tiles.scss');
+@import url('sections/blog-slider.scss');
+@import url('sections/support-accordion.scss');
+@import url('sections/faq-section.scss');
+@import url('sections/howto-section.scss');
+@import url('sections/product-quick-add.scss');
 
 /* Helpers ===================================================================*/
 @import url('global/helpers.scss');
+
+/* Vendors ===================================================================*/
+@import url('vendor/slick.scss');
 
 /* =============================================================================
    Shopify core helpers

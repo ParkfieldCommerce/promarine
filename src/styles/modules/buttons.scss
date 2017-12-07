@@ -1,0 +1,102 @@
+// ======================================
+// Buttons - All button styling goes here
+// ======================================
+
+
+// Banner
+.banner-actions {
+  a {
+    color: $colorBannerText;
+    &:hover {
+      opacity: 0.6;
+      transition: 0.3s;
+    }
+  }
+}
+
+// Header navigation
+.header-navigation {
+  a {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    font-size: 18px;
+    text-decoration: none;
+    color: $colorHeaderText;
+    &:hover {
+      border-bottom: 2px solid $colorHeaderText;
+      opacity: 0.7;
+      transition: 0.3s;
+    }
+  }
+}
+
+// Button Call
+a.btn {
+  padding: 12px 30px;
+  border-radius: 11px;
+  font-size: 18px;
+  box-shadow: $boxShadow;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  @include s() {
+    font-size: 14px;
+  }
+
+  // Primary
+  &.primary-btn {
+    background-color: $colorBtnPrimary;
+    color: $colorBtnTextPrimary;
+    &:hover {
+      background-color: $colorBtnSecondary;
+      color: $colorBtnTextSecondary;
+      transition: 0.3s;
+    }
+  }
+
+  // Secondary
+  &.secondary-btn {
+    background-color: $colorBtnSecondary;
+    color: $colorBtnTextSecondary;
+    &:hover {
+      background-color: $colorBtnPrimary;
+      color: $colorBtnTextPrimary;
+      transition: 0.3s;
+    }
+  }
+
+  // Support articles
+  &.support-btn {
+    background-color: $colorBtnSecondary;
+    border: 1px solid #00499e;
+    color: #00499e;
+    &:hover {
+      background-color: $colorBtnPrimary;
+      color: $colorBtnTextPrimary;
+      transition: 0.3s;
+    }
+  }
+
+  // Transparent Buttons
+  &.transparent-primary-btn {
+    background-color: rgba(#000, 0.1);
+    border: 1px solid $colorBtnPrimary;
+    color: $colorBtnPrimary;
+    border-radius: 0;
+    font-family: Poppins;
+    font-weight: 600;
+    font-size: 20px;
+  }
+
+  &.transparent-secondary-btn {
+    background-color: rgba(#000, 0);
+    border: 3px solid $colorBtnSecondary;
+    color: $colorBtnSecondary;
+    border-radius: 0;
+    font-family: Poppins;
+    font-weight: 600;
+    font-size: 20px;
+  }
+}

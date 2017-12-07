@@ -10,18 +10,32 @@
 {% if product.available %}
   {% assign sold_out = false %}
 {% endif %}
+<style>
+  .header-bg,
+  .quick-add {
+    background: url({{ section.settings.header_bg_picker | img_url:'master' }});
+    background-position: 50% 50%;
+    background-size: cover;
+  }
+</style>
+<section class="product-page">
 
-<meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
-<meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
+  <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
+  <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
+  
+  <div class="product-crumbs
+  {% if section.settings.breadcrumb_position == 'left' %}crumb-left{% endif %}
+  {% if section.settings.breadcrumb_position == 'right' %}crumb-right{% endif %}">
+    {% include 'theme-breadcrumbs' %}
+  </div>
 
-<div class="padding-top padding-bottom">
   <div class="container l" itemscope itemtype="http://schema.org/Product" data-section-type="product" data-section-id="{{ section.id }}" data-enable-history-state="true">
     <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
     <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
 
-    <div class="row no-margin">
-      <div class="column l6 m6 s12">
+    <div class="row product-row">
 
+      <div class="column l6 m6 s12">
         <div id="ProductPhoto">
           <img src="{{ product.featured_image | img_url: '1024x1024' }}"{% if image.alt %} alt="{{ image.alt }}"{% endif %}>
         </div>
@@ -29,51 +43,26 @@
         {% if product.images.size > 1 %}
           <div id="ProductThumbs" class="row collapse">
             {% for image in product.images %}
-              <div class="column l3 m4 s6">
+              <div class="column l3 m3 s2 thumb-img">
                 <img src="{{ image.src | img_url: '1024x1024' }}"{% if image.alt %} alt="{{ image.alt }}"{% endif %}>
               </div>
             {% endfor %}
           </div>
         {% endif %}
 
-      </div>
+        <h4 class="share-title">{{ 'social.share.title' | t }}</h4>
+        {% include 'social-sharing' %}
 
+      </div>
       <div class="column l6 m6 s12">
 
-        <h1 itemprop="name">{{ product.title }}</h1>
+        <h1 class="product-title" itemprop="name">{{ product.title }}</h1>
 
         <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
           <meta itemprop="priceCurrency" content="{{ shop.currency }}">
           <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
 
           <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm" data-cart-submit>
-            {% unless product.options.size == 1 and product.variants[0].title == 'Default Title' %}
-              {% for option in product.options_with_values %}
-                <label {% if option.name == 'default' %}class="hidden" {% endif %}for="SingleOptionSelector-{{ forloop.index }}">
-                  {{ option.name }}
-                </label>
-                <select class="single-option-selector" id="SingleOptionSelector-{{ forloop.index }}" data-index="option{{ forloop.index }}">
-                  {% for value in option.values %}
-                    <option value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>{{ value }}</option>
-                  {% endfor %}
-                </select>
-              {% endfor %}
-            {% endunless %}
-
-            {% comment %}Original variant selector, the customer will not see this element.{% endcomment %}
-            <select name="id" id="productSelect" class="product-single__variants" data-index="option{{ forloop.index }}" style="display: none;">
-              {% for variant in product.variants %}
-                {% if variant.available %}
-                  <option
-                    value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}
-                  </option>
-                {% else %}
-                  <option disabled="disabled">
-                    {{ variant.title }} - {{ 'product.sold_out' | t }}
-                  </option>
-                {% endif %}
-              {% endfor %}
-            </select>
 
             <span class="hidden">{{ 'product.regular_price' | t }}</span>
             <span id="ProductPrice" class="h2 clearfix" itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
@@ -88,31 +77,88 @@
               </p>
             {% endif %}
 
-            <label for="Quantity" class="clearfix">{{ 'product.quantity' | t }}</label>
-            <div class="quantity-adjust">
-              <a class="adjust" data-change="-1">&#8211;</a>
-               <input type="number" id="Quantity" class="quantity" name="quantity" value="1" min="1" data-cart-quantity="1">
-              <a class="adjust" data-change="1">&#43;</a>
+            <div class="row l-table m-table">
+              <div class="column l8 m6 s12">
+
+                {% unless product.options.size == 1 and product.variants[0].title == 'Default Title' %}
+                  <div class="option-selector">
+                    {% for option in product.options_with_values %}
+                      <label {% if option.name == 'default' %}class="hidden" {% endif %}for="SingleOptionSelector-{{ forloop.index }}">
+                        {{ option.name }}
+                      </label>
+                      <div class="select-wrapper">
+                        <select class="single-option-selector main" id="SingleOptionSelector-{{ forloop.index }}" data-index="option{{ forloop.index }}">
+                          {% for value in option.values %}
+                            <option value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>
+                              {{ value }}{% for variant in product.variants offset:forloop.index0 limit: 1 %} {{ variant.price | money }} {% endfor %}
+                            </option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                    {% endfor %}
+                  </div>
+                {% endunless %}
+
+                {% comment %}Original variant selector, the customer will not see this element.{% endcomment %}
+                <select name="id" id="productSelect" class="product-single__variants" data-index="option{{ forloop.index }}" style="display: none;">
+                  {% for variant in product.variants %}
+                    {% if variant.available %}
+                      <option
+                        value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}
+                      </option>
+                    {% else %}
+                      <option disabled="disabled">
+                        {{ variant.title }} - {{ 'product.sold_out' | t }}
+                      </option>
+                    {% endif %}
+                  {% endfor %}
+                </select>
+
+              </div>
+              <div class="column l4 m6 s12">
+                <div class="quantity-selector">
+                  <label for="Quantity" class="clearfix">{{ 'product.quantity' | t }}</label>
+                  <div class="quantity-adjust">
+                    <a class="adjust" data-change="-1">&#8211;</a>
+                     <input type="number" id="Quantity" class="quantity" name="quantity" value="1" min="1" data-cart-quantity="1">
+                    <a class="adjust" data-change="1">&#43;</a>
+                  </div>
+                </div>
+              </div>
             </div>
-            {% if sold_out %}
-              <button type="submit" name="add" data-add-to-cart disabled>
-                <span id="AddToCartText">{{ 'product.sold_out' | t }}</span>
-              </button>
-            {% else %}
-              <button type="submit" name="add" data-add-to-cart>
-                <span id="AddToCartText">{{ 'product.add_to_cart' | t }}</span>
-              </button>
-            {% endif %}
+
+            <div class="submit-area">
+              {% if sold_out %}
+                <a type="submit" name="add" data-add-to-cart disabled>
+                  <span id="AddToCartText">{{ 'product.sold_out' | t }}</span>
+                </a>
+              {% else %}
+                <a type="submit" class="btn primary-btn" name="add" data-add-to-cart>
+                  <span id="AddToCartText">{{ 'product.add_to_cart' | t }}</span>
+                </a>
+              {% endif %}
+            </div>
           </form>
 
+          <div class="mb-share">
+            <h4 class="share-title">{{ 'social.share.title' | t }}</h4>
+            {% include 'social-sharing' %}
+          </div>
+
         </div>
 
-        <div class="rte" itemprop="description">
-          {{ product.description }}
+        <div class="product-description" itemprop="description">
+          <h3 class="title">Description</h3>
+          <p>{{ product.description | strip_html }}</p>
         </div>
 
-        <h4 class="margin-top">{{ 'social.share.title' | t }}</h4>
-        {% include 'social-sharing' %}
+        <div class="product-calculator">
+          <h3 class="title">How much do I need?</h3>
+          <div class="calculator">
+            <iframe src="https://services.cognitoforms.com/f/wDw7xcSDAUSMDiWgK7xJ0Q?id=3" width="100%" height="274px" frameborder="0" scrolling="no"></iframe>
+            <script type="text/javascript" src="https://services.cognitoforms.com/scripts/embed.js"></script>
+          </div>
+        </div>
 
         {% if collection %}
           {% if collection.previous_product or collection.next_product %}
@@ -134,4 +180,51 @@
       </div>
     </div>
   </div>
-</div>
+</section>
+
+{% include 'faq-section' %}
+{% include 'howto-section' %}
+{% if section.settings.quick_add %}
+  {% include 'product-quick-add' %}
+{% endif %}
+
+
+
+{% schema %}
+{
+  "name": "Product Page",
+  "class": "product-page",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Product Page"
+    },
+    {
+      "type": "image_picker",
+      "label": "Background for Header",
+      "id": "header_bg_picker"
+    },
+    {
+      "type": "checkbox",
+      "label": "Enable Quick Add",
+      "id": "quick_add",
+      "default": false
+    },
+    {
+      "type": "radio",
+      "label": "Breadcrumbs Position",
+      "id": "breadcrumb_position",
+      "options": [
+       {
+         "value": "left",
+         "label": "Left"
+       },
+       {
+         "value": "right",
+         "label": "Right"
+       }
+      ]
+    }
+  ]
+}
+{% endschema %}

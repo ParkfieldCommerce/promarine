@@ -5,37 +5,67 @@
 {% assign button_text = section.settings.button_text %}
 {% assign success = section.settings.success %}
 {% assign show_button = section.settings.show_button %}
+<style>
+  .theme-footer {
+    background: url({{ section.settings.footer-bg | img_url:'master' }});
+    background-position: 50% 50%;
+    background-size: cover;
+  }
+</style>
 
 <footer class="theme-footer" role="contentinfo">
-  <div class="container center">
-    <div class="row l-table">
-      <div class="column l5 m12 s12 l-left v-middle">
+  <div class="container l">
+    <div class="row l-table m-table">
+      <div class="column l2 m3 s12" id="mb-order2">
+        <ul class="footer-nav">
+          {% for link in linklists['footer'].links %}
+            <li><a href="{{link.url}}">{{link.title}}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="column l2 m2 s12" id="mb-order3">
+        <ul class="footer-nav">
+          {% for link in linklists['footer-about'].links %}
+            <li><a href="{{link.url}}">{{link.title}}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="column l4 m3 s12" id="mb-order4">
+        <ul class="footer-nav">
+          {% for link in linklists['footer-contact'].links %}
+            <li><a href="{{link.url}}">{{link.title}}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="column l4 m4 s12" id="mb-order">
         {% if section.settings.enable_social %}
+          <p class="lead">Stay Connected</p>
           {% include 'social-links' %}
         {% endif %}
-      </div>
-      <div class="column l7 m12 s12 l-right v-middle">
-        {% if section.settings.enable_subscribe %}
-          <h5>{{ heading }}</h5>
-          {% include 'section-subscribe-form' %}
-        {% endif %}
+        <div class="subscribe-input">
+          {% if section.settings.enable_subscribe %}
+            <h5>{{ heading }}</h5>
+            {% include 'section-subscribe-form' %}
+          {% endif %}
+        </div>
       </div>
     </div>
-  </div>
-
-  <div class="container center">
-    <div class="row l-table">
-      <div class="column l7 m12 s12 l-left v-middle">
+    <div class="row footer-extras">
+      <div class="column l5 m5 s12" id="mb-order3">
+        <small>&copy; {{ 'now' | date: "%Y" }} <a href="/">{{ shop.name }}</a> | All Rights Reserved</small>
+      </div>
+      <div class="column l2 m2 s12 footer-logo" id="mb-order2">
+        {% if section.settings.footer_logo %}
+          <img src="{{section.settings.footer_logo | img_url:'master'}}" alt="">
+        {% endif %}
+      </div>
+      <div class="column l5 m5 s12" id="mb-order">
         {% if section.settings.enable_gateway_icons %}
           {% include 'payment-gateways' %}
         {% endif %}
       </div>
-      <div class="column l5 m12 s12 l-right v-middle">
-        <small>&copy; {{ 'now' | date: "%Y" }} <a href="/">{{ shop.name }}</a> | site by <a href="https://elkfox.com?ref={{ shop.name | handleize }}" title="Digital Commerce Agency Elkfox.com">{% include 'icon' with 'elkfox' %}</a> &amp; <a href="http://shopify.com?ref=elkfox" title="Shopify.com" class="icon-small">{% include 'icon' with 'shopify' %} Shopify</a></small>
-      </div>
     </div>
   </div>
-
 </footer>
 {% schema %}
   {
@@ -44,6 +74,16 @@
       {
         "type": "header",
         "content": "General"
+      },
+      {
+        "type": "image_picker",
+        "id": "footer-bg",
+        "label": "Background"
+      },
+      {
+        "type": "image_picker",
+        "id": "footer_logo",
+        "label": "Footer Logo"
       },
       {
         "type": "checkbox",

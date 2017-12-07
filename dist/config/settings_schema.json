@@ -43,6 +43,66 @@
         "id": "color_alternate",
         "label": "Alternate Color",
         "default": "#7A7391"
+      },
+      {
+        "type": "header",
+        "content": "Top Banner"
+      },
+      {
+        "type": "color",
+        "id": "color_banner",
+        "label": "Banner Background Color",
+        "default": "#253D83"
+      },
+      {
+        "type": "color",
+        "id": "color_banner_text",
+        "label": "Banner Text Color",
+        "default": "#fff"
+      },
+      {
+        "type": "header",
+        "content": "Buttons"
+      },
+      {
+        "type": "color",
+        "id": "color_btn_primary",
+        "label": "Primary Button Color",
+        "default": "#253d83"
+      },
+      {
+        "type": "color",
+        "id": "color_btn_secondary",
+        "label": "Secondary Button Color",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "color_btn_text_primary",
+        "label": "Secondary Button Color",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "color_btn_text_secondary",
+        "label": "Secondary Button Color",
+        "default": "#253d83"
+      }
+    ]
+  },
+  {
+    "name": "Fonts",
+    "settings": [
+      {
+        "type": "select",
+        "id": "global_font",
+        "label": "Global Font",
+        "options": [
+          {
+            "value": "'Roboto', sans-serif",
+            "label": "Roboto"
+          }
+        ]
       }
     ]
   },
@@ -51,44 +111,48 @@
     "settings": [
       {
         "type": "header",
-        "content": "Logo"
+        "content": "Styles"
       },
       {
-        "type": "checkbox",
-        "id": "logo_use_image",
-        "label": "Use custom logo"
+        "type": "color",
+        "id": "color_header_text",
+        "label": "Header Text Color",
+        "default": "#fff"
       },
       {
-        "type": "image",
-        "id": "logo.png",
-        "label": "Custom logo",
-        "max-width": 450,
-        "max-height": 200,
-        "info": "450 x 200px .png"
+        "type": "color",
+        "id": "color_header_background",
+        "label": "Header Background Color",
+        "default": "#253D83"
       },
       {
-        "type": "text",
-        "id": "logo_max_width",
-        "label": "Max logo width",
-        "default": "450",
-        "info": "Defined in pixels. Do not add the 'px' unit."
+        "type": "range",
+        "id": "header_bg_opacity",
+        "min": 0,
+        "max": 1,
+        "step": 0.1,
+        "label": "Header Background Opacity",
+        "default": 0.5
       },
       {
-        "type": "header",
-        "content": "Favicon"
+        "type":      "range",
+        "id":        "banner_font_size",
+        "min":       6,
+        "max":        18,
+        "step":       1,
+        "unit":       "px",
+        "label":     "Banner Font size",
+        "default":   16
       },
       {
-        "type": "checkbox",
-        "id": "favicon_enable",
-        "label": "Use custom icon"
-      },
-      {
-        "type": "image",
-        "id": "favicon.png",
-        "label": "Icon",
-        "max-width": 32,
-        "max-height": 32,
-        "info": "32 x 32px .png required"
+        "type":      "range",
+        "id":        "header_font_size",
+        "min":       6,
+        "max":        18,
+        "step":       1,
+        "unit":       "px",
+        "label":     "Header Font size",
+        "default":   16
       }
     ]
   },
@@ -242,6 +306,18 @@
         "type": "checkbox",
         "id": "share_google",
         "label": "+1 on Google Plus",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "share_email",
+        "label": "Share by email",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "print_page",
+        "label": "Print Page",
         "default": true
       }
     ]

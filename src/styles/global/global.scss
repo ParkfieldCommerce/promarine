@@ -1,4 +1,6 @@
 /* Global ====================================================================*/
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Poppins');
 
 html {
   height: 100%
@@ -20,7 +22,7 @@ img {
 
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
-  font-family: sans-serif;
+  font-family: $globalFont;
   font-weight: $fontBold;
   line-height: $lineHeight;
   display: block;

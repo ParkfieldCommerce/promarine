@@ -1,0 +1,7 @@
+<section class="header-navigation">
+  <ul class="menu">
+    {% for link in linklists.header-menu.links %}
+      <li>{{ link.title | link_to: link.url }}</li>
+    {% endfor %}
+  </ul>
+</section>

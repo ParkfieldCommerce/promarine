@@ -5,7 +5,7 @@
   @include prefixer(user-select, none, webkit moz ms o spec);
   .adjust {
     display: inline-block;
-    height: $gutter/1.5;
+    height: 22px;
     vertical-align: middle;
     line-height: $gutter/1.5 - $borderWeight*4;
     font-size: 1.35rem;
@@ -13,11 +13,12 @@
     text-decoration: none;
     background-color: transparent;
     border: $borderWeight $borderStyle transparent;
+    color: #000;
   }
   .quantity, input#Quantity.quantity {
     display: inline-block;
-    width: $gutter/1.5;
-    height: $gutter/1.5;
+    width: 45px;
+    height: 57px;
     line-height: $gutter/1.5;
     text-align: center;
     padding: 0;

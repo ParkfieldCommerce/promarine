@@ -1,0 +1,101 @@
+<section class="blog-slider">
+  <div class="container l">
+    <div class="row l-table m-table">
+      {% if section.settings.heading_url != blank %}
+        <a href="{{section.settings.heading_url}}" class="heading">
+          {% if section.settings.title != blank %}
+            <h2 class="heading">{{ section.settings.title | escape }}</h2>
+          {% endif %}
+        </a>
+      {% elsif section.settings.title != blank %}
+        <h2 class="heading">{{ section.settings.title | escape }}</h2>
+      {% endif %}
+
+      {%- assign blog = blogs[section.settings.blog] -%}
+      <div class="row s-table slider" id="blog-slider">
+        {% for article in blog.articles limit: section.settings.post_limit %}
+          <div class="column l4 m4 s12" id="block">
+            <div class="article-block block-{{ forloop.index }}">
+
+              <div class="date">
+                <time datetime="{{ article.published_at | date: '%b-%d' }}">
+                  {{ article.published_at | date: '%b. %-d' }}
+                </time>
+              </div>
+
+              <div class="image">
+                <img src="{{ article.image | img_url:'master' }}">
+              </div>
+
+              <div class="content">
+                <p class="lead">{{ article.title }}</p>
+                <a href="{{ article.url }}" class="btn primary-btn">{{ 'blog.article.read_more' | t }}</a>
+              </div>
+
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% schema %}
+  {
+    "name": "Blog Slider",
+    "class": "blog-slider-section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Featured news articles"
+      },
+      {
+        "type": "url",
+        "id": "heading_url",
+        "label": "Heading URL"
+      },
+      {
+        "id": "blog",
+        "type": "blog",
+        "label": "Blog"
+      },
+      {
+        "type": "select",
+        "id": "post_limit",
+        "label": "Posts",
+        "default": "3",
+        "options": [
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "6",
+            "label": "6"
+          },
+          {
+            "value": "9",
+            "label": "9"
+          },
+          {
+            "value": "12",
+            "label": "12"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Blog Slider",
+        "category": "Blog",
+        "settings": {
+          "blog": "News",
+          "post_limit": "3"
+        }
+      }
+    ]
+  }
+{% endschema %}

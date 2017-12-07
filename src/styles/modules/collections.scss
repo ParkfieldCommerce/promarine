@@ -1,0 +1,31 @@
+.collection-section {
+	.title-block {
+		padding-top: 80px;
+		padding-bottom: 50px;
+		h1 {
+		    font-weight: bold;
+		    color: #fff;
+		    text-align: center;
+		    font-size: 48px;
+		    margin-top: 100px;
+		    text-shadow: $boxShadow;
+		}
+	}
+	.crumbs {
+		margin: 10px 0;
+		font-family: 'Poppins';
+		font-weight: 600;
+		font-size: 14px;
+		color: #979797;
+		a {
+			color: #979797;
+			text-decoration: none;
+		}
+		&.crumb-left {
+			text-align: left;
+		}
+		&.crumb-right {
+			text-align: right;
+		}
+	}
+}

@@ -1,0 +1,21 @@
+.howto-section {
+  background: #f9f9f9;
+  padding: 40px 0;
+  font-family: 'Poppins';
+  .title {
+    font-weight: 500;
+    font-size: 24px;
+    text-align: center;
+    margin: 40px 0;
+  }
+
+  .howto-block {
+    box-shadow: $boxShadow;
+    margin: 50px 0;
+    font-size: 18px;
+  }
+
+  .body {
+    padding: 30px 40px;
+  }
+}

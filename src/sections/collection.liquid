@@ -1,0 +1,115 @@
+<!-- /sections/collection.liquid -->
+
+{% assign view = '12' %}
+{% paginate collection.products by 12 %}
+
+{% assign column_width = 'column l4 m6 s12' %}
+<style>
+  .title-block {
+    background: url({{ section.settings.collection-title-bg | img_url:'master' }});
+    background-position: 50% 50%;
+    background-size: cover;
+  }
+</style>
+<section class="collection-section">
+  <div class="title-block">
+    <h1>{{ collection.title }}</h1>
+  </div>
+  <div class="container l" data-section-type="collection">
+    <div class="crumbs {% if section.settings.crumb-position == 'left'%}crumb-left{% endif %}{% if section.settings.crumb-position == 'right'%}crumb-right{% endif %}">
+      {% include 'theme-breadcrumbs' %}
+    </div>
+  </div>
+</section>
+
+<div class="container l" data-section-type="collection">
+  <header>
+    <div class="row">
+      <div class="column l6 m12 s12">
+        
+      </div>
+      <div class="column l6 m12 s12 right m-left s-left">
+        <label for="SortBy">{{ 'collection.sort.title' | t }}</label>
+        <div class="select-wrapper">
+          <select name="SortBy" data-sort>
+            {% assign sort_options = 'manual,best-selling,title-ascending,title-descending,price-ascending,price-descending,created-descending,created-ascending' | split: ',' %}
+            {% for option in sort_options %}
+              <option value="{{ option }}" {% if collection.sort_by == option %}selected="selected"{% endif %}>{{ 'collection.sort.' | append: option | t }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+    </div>
+
+    {% include 'collection-view' %}
+
+    {% if collection.description != blank %}
+      <div class="rte">
+        {{ collection.description }}
+      </div>
+    {% endif %}
+  </header>
+</div>
+
+<div class="container l">
+  <div class="row">
+    {% for product in collection.products %}
+      {% include 'collection-product' %}
+    {% else %}
+      {% if collection.handle == 'all' and current_tags == '' %}
+        {% unless emptyState %}
+          {{ 'theme-onboarding.css' | global_asset_url | stylesheet_tag }}
+          {% assign emptyState = true %}
+        {% endunless %}
+        {% include 'onboarding-empty-collection' %}
+      {% else %}
+        <div class="column l12">
+          <p>{{ 'collection.no_matches' | t }}</p>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+{% if paginate.pages > 1 %}
+  <div class="container l">
+    <hr>
+    <div class="pagination">
+      {{ paginate | default_pagination }}
+    </div>
+  </div>
+{% endif %}
+
+{% endpaginate %}
+
+{% schema %}
+{
+  "name": "Collections Section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Collections"
+    },
+    {
+      "type": "image_picker",
+      "id": "collection-title-bg",
+      "label": "Background for Title"
+    },
+    {
+      "type": "radio",
+      "id": "crumb-position",
+      "label": "Breadcrumb Position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -44,4 +44,92 @@ $(document).ready(function() {
   var sections = new concrete.Sections();
   sections.register('product', concrete.Product);
   sections.register('collection', concrete.Collection);
+
+
+  // Init Slick Slider for Hero
+  $('#hero-slider').slick({
+    arrows: true,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    dots: false,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    prevArrow: '<a class="hero-prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>',
+    nextArrow: '<a class="hero-next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>'
+  });
+
+  // Init Slick Slider for Blog
+  $('#blog-slider').slick({
+    arrows: true,
+    infinite: false,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    dots: false,
+    autoplay: false,
+    prevArrow: '<a class="blog-prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>',
+    nextArrow: '<a class="blog-next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>',
+    responsive: [
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: false,
+          prevArrow: '<a class="blog-prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>',
+          nextArrow: '<a class="blog-next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>',
+          draggable: true
+        }
+      },
+      {
+        breakpoint: 850,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          arrows: false,
+          prevArrow: '<a class="blog-prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>',
+          nextArrow: '<a class="blog-next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>',
+          draggable: true
+        }
+      }
+    ]
+  });
+
+  // Accordion for Support Articles
+  $('.title-bar').on('click', function() {
+    $(this).next('.pane').slideToggle('slow');
+    $(this).find('.accordion-action .fa.fa-plus').toggle();
+    $(this).find('.accordion-action .fa.fa-minus').toggle();
+  });
+
+  // Mobile Header menu
+  $('#mobile-btn').on('click', function() {
+    $('#mobile-actions').slideToggle();
+    $('#header-menu').slideToggle();
+    $(this).find('i').toggleClass("fa-bars fa-times");
+  });
+
+  // Product Quick Add
+  $('.quick-add .single-option-selector').on('change', function() {
+    var optionVal = $(this).val();
+    $('.product-page .single-option-selector.main').val(optionVal);
+    $('.product-page .single-option-selector.main').trigger('change');
+  });
+
+  $('.quick-add .adjust[data-change=-1]').on('click', function() {
+    $('#AddToCartForm .adjust[data-change=-1]').trigger('click');
+  });
+
+  $('.quick-add .adjust[data-change=1]').on('click', function() {
+    $('#AddToCartForm .adjust[data-change=1]').trigger('click');
+  });
+
+  $(document).scroll(function () {
+    var y = $(this).scrollTop();
+    if (y > 800) {
+      $('.quick-add').fadeIn();
+    } else {
+      $('.quick-add').fadeOut();
+    }
+  });
 })

@@ -1,4 +1,8 @@
 /* Variables =================================================================*/
+// Fonts
+$globalFont: {{ settings.global_font }};
+$bannerFontSize: {{ settings.banner_font_size }};
+$headerFontSize: {{ settings.header_font_size }};
 
 // Colors
 $colorBrand: {{ settings.color_brand }};
@@ -7,6 +11,20 @@ $colorForeground: {{ settings.color_body }};
 $colorBackground: {{ settings.color_background }};
 $colorHighlight: {{ settings.color_highlight }};
 $colorAlternate: {{ settings.color_alternate }};
+$colorBanner: {{ settings.color_banner }};
+$colorBannerText: {{ settings.color_banner_text }};
+$colorHeaderText: {{ settings.color_header_text }};
+$colorHeaderBackground: {{ settings.color_header_background }};
+$colorBtnPrimary: {{ settings.color_btn_primary }};
+$colorBtnSecondary: {{ settings.color_btn_secondary }};
+$colorBtnTextPrimary: {{ settings.color_btn_text_primary }};
+$colorBtnTextSecondary: {{ settings.color_btn_text_secondary }};
+
+// Opacity
+$header_bg_opacity: {{ settings.header_bg_opacity }};
+
+// Box Shadow
+$boxShadow: 2px 2px 12px rgba(0, 0, 0, 0.25);
 
 // Typography
 $fontLight: 300;
@@ -15,7 +33,7 @@ $fontBold: 700;
 $lineHeight: 1.75;
 
 // Space & Borders
-$gutter: 50px;
+$gutter: 10px;
 $borderRadius: 2px;
 $borderWeight: 2px;
 $borderStyle: solid;
@@ -24,7 +42,7 @@ $borderStyle: solid;
 $s: 600px;
 $m: 850px;
 $l: 1150px;
-$xl: 1450px;
+$xl: 1440px;
 
 // Miscellaneous
 $logoMaxWidth: {{ settings.logo_max_width | default: '450' | remove: 'px' }}px;

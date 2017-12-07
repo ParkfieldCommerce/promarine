@@ -23,7 +23,7 @@
          href="//www.facebook.com/sharer.php?u={{ permalinkURL }}"
          class="button share facebook"
          data-social="facebook">
-        {{ 'social.share.facebook' | t }}
+        {% include 'icon' with 'facebook' %}
       </a>
     {% endif %}
 
@@ -33,7 +33,7 @@
          href="//twitter.com/share?url={{ permalinkURL }}&amp;text={{ shareTitle | url_param_escape }}"
          class="button share twitter"
          data-social="twitter">
-        {{ 'social.share.twitter' | t }}
+        {% include 'icon' with 'twitter' %}
       </a>
     {% endif %}
 
@@ -45,7 +45,7 @@
            href="//pinterest.com/pin/create/button/?url={{ permalinkURL }}&amp;media=http:{{ product.featured_image | img_url: '1024x1024' }}&amp;description={{ shareTitle | url_param_escape }}"
            class="button share pinterest"
            data-social="pinterest">
-          {{ 'social.share.pinterest' | t }}
+          {% include 'icon' with 'pinterest' %}
         </a>
       {% endif %}
 
@@ -67,7 +67,24 @@
          href="//plus.google.com/share?url={{ permalinkURL }}"
          class="button share google"
          data-social="google">
-        {{ 'social.share.google' | t }}
+        {% include 'icon' with 'gplus' %}
+      </a>
+    {% endif %}
+
+    {% if customer %}
+      {% if settings.share_email %}
+        <a href="mailto:{{ customer.email }}?Subject={{ shareTitle }}"
+           class="button share"
+           target="_blank">
+           {% include 'icon' with 'email' %}
+        </a>
+      {% endif %}
+    {% endif %}
+
+    {% if settings.print_page %}
+      <a onclick="window.print();"
+         class="button share">
+        {% include 'icon' with 'print' %}
       </a>
     {% endif %}
 
