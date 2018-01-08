@@ -39,8 +39,6 @@ MIT License
   {% endif %}
 
   {{ 'vendor.js' | asset_url | script_tag }}
-  <!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'app.js' | asset_url }}" defer="defer"></script><!--<![endif]-->
-  <!--[if lte IE 9]><script src="{{ 'app.js' | asset_url }}"></script><![endif]-->
   <script>
     var cart;
     $(document).ready(function() {
@@ -83,5 +81,11 @@ MIT License
     });
 
   </script>
+  <!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'app.js' | asset_url }}" defer="defer"></script><!--<![endif]-->
+  <!--[if lte IE 9]><script src="{{ 'app.js' | asset_url }}"></script><![endif]-->
+  
+  <!--Installed by Yotpo Automatic Installation-->
+  <script>(function e(){var e=document.createElement("script");e.type="text/javascript",e.async=true,e.src="//staticw2.yotpo.com/luo3sDsDhVIqhgWr6z8tMRQnBJ88bgkTV8V1Ek7Q/widget.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})();</script>
+  <!--End of Yotpo Automatic Installation-->
 </body>
 </html>

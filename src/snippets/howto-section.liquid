@@ -3,7 +3,7 @@
 =============================================================
 In order for this to work, two things need to happen:
 
-1. Tag Product with the Blog Handle
+1. Tag Product with the Main Blog Handle
     BE SURE TO ADD 'howto_' before the handle
 
 2. Tag the article with the product handle
@@ -24,34 +24,34 @@ In order for this to work, two things need to happen:
   {% endif %}
 {% endfor %}
 {% assign howto_array = howto_array | split: "," %}
+{% if howto_array != blank %}
+  <section class="howto-section">
+    <div class="container l">
+      {% for handle in howto_array %}
+        {% assign howto = blogs[handle] %}
+        {% for article in howto.articles %}
+          {% for tag in article.tags %}
+            {% if tag == product.handle %}
+              <h2 class="title">{{ article.title }}</h2>
+              <div class="howto-block">
+                <div class="row">
 
-<section class="howto-section">
-  <div class="container l">
-    {% for handle in howto_array %}
-      {% assign howto = blogs[handle] %}
-      {% for article in howto.articles %}
-        {% for tag in article.tags %}
-          {% if tag == product.handle %}
-            <h2 class="title">{{ article.title }}</h2>
-            <div class="howto-block">
-              <div class="row">
+                  {% if article.image %}
+                  <div class="column l12 m12 s12 image-block">
+                      <img src="{{ article.image | img_url:'master' }}">
+                  </div>
+                  {% endif %}
 
-                {% if article.image %}
-                <div class="column l4 m4 s12">
-                    <img src="{{ article.image | img_url:'master' }}">
+                  <div class="column l12 m12 s12 body">
+                    {{ article.content }}
+                  </div>
+
                 </div>
-                {% endif %}
-
-                <div class="column l8 m8 s12 body">
-                  {{ article.content }}
-                </div>
-
               </div>
-
-            </div>
-          {% endif %}
+            {% endif %}
+          {% endfor %}
         {% endfor %}
       {% endfor %}
-    {% endfor %}
-  </div>
-</section>
+    </div>
+  </section>
+{% endif %}

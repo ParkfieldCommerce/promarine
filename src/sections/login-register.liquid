@@ -1,0 +1,47 @@
+<!-- /templates/customers/login.liquid -->
+<style>
+	.login-register {
+		background: url({{ section.settings.login_register_bg | img_url:'master' }});
+		background-position: 50% 50%;
+		background-size: cover;
+	}
+
+	.header-bg {
+		margin-bottom: 0;
+	}
+</style>
+<section class="login-register">
+	<div class="row">
+		<div class="column l6 m6 s12 login">
+			{% include 'form-login' %}
+		  {% if shop.checkout.guest_login %}
+		    <hr>
+		    <h2>{{ 'form.guest_title' | t }}</h2>
+		    {% form 'guest_login' %}
+		      <input type="submit" value="{{ 'form.continue' | t }}">
+		    {% endform %}
+		  {% endif %}		
+		</div>
+		<div class="column l6 m6 s12 register">
+			{% include 'form-register' %}
+		</div>
+	</div>
+</section>
+
+{% schema %}
+{
+	"name": "Sign In/ Sign Up",
+	"class": "login-register-section",
+	"settings": [
+		{
+			"type": "header",
+			"content": "Login/Register"
+		},
+		{
+			"type": "image_picker",
+			"id": "login_register_bg",
+			"label": "Login Background"
+		}
+	]
+}
+{% endschema %}

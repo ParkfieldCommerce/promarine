@@ -1,3 +1,22 @@
+{% comment %} 
+  {
+    "type": "text",
+    "id": "banner_text_secondary",
+    "label": "Banner Middle Text",
+    "default": "Enter something here"
+  },
+{% endcomment %}
+
+{% comment %}        
+  <div class="column l3 m3">
+
+    {% if section.settings.banner_text %}
+      <p class="banner-lead">{{ section.settings.banner_text_secondary }}</p>
+    {% endif %}
+
+  </div>
+{% endcomment %}
+
 <!-- /snippets/theme-header.liquid -->
 
 {% assign logo = section.settings.logo %}
@@ -15,6 +34,19 @@
 {% endif %}
 {% assign include_results = include_results | append: '[last]' | remove: ',[last]' | remove: '[last]' %}
 
+{% unless template == 'index' or template == 'collection' or template == 'list-collections' %}
+  <div class="header-bg"></div>
+{% endunless %}
+
+<style>
+  .header-mobile, 
+  .header {
+    background: url({{ section.settings.header_bg_picker | img_url:'master' }});
+    background-position: 50% 50%;
+    background-size: cover;
+  }
+</style>
+
 <!-- Mobile Header -->
 {% include 'mobile-header' %}
 
@@ -23,17 +55,10 @@
   <div class="banner">
     <div class="container l">
       <div class="row l-table m-table">
-        <div class="column l5 m5">
+        <div class="column l8 m8">
 
           {% if section.settings.banner_text %}
             <p class="banner-lead">{{ section.settings.banner_text }}</p>
-          {% endif %}
-
-        </div>
-        <div class="column l3 m3">
-
-          {% if section.settings.banner_text %}
-            <p class="banner-lead">{{ section.settings.banner_text_secondary }}</p>
           {% endif %}
 
         </div>
@@ -54,7 +79,7 @@
           </div>
 
           <div class="cart-icon">
-            <a href="/cart" id="CartLink" data-trigger="popup" data-target="#PopupCart.popup" aria-controls="Cart" aria-expanded="false" class="v-middle">
+            <a href="/cart" {% comment %}id="CartLink" data-trigger="popup" data-target="#PopupCart.popup" aria-controls="Cart" aria-expanded="false" {% endcomment %} class="v-middle">
               {% include 'icon' with 'cart' %}
             </a>
           </div>
@@ -66,7 +91,7 @@
   <div class="header-body">
     <div class="container l">
       <div class="row l-table m-table">
-        <div class="column l6 m8 s12 l-left m-left s-middle">
+        <div class="column l5 m5 s12 l-left m-left s-middle">
           {% if template == 'index' %}
             <h1 class="logo" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
           {% else %}
@@ -88,7 +113,7 @@
             </div>
           {% endif %}
         </div>
-        <div class="column l6 m8 s12 l-left m-left s-middle v-m-align">
+        <div class="column l7 m7 s12 l-left m-left s-middle v-m-align">
           {% include 'header-menu' %}
         </div>
       </div>
@@ -97,16 +122,6 @@
 </header>
 
 <!-- BG for Nav -->
-<style>
-  .header-bg {
-    background: url({{ section.settings.header_bg_picker | img_url:'master' }});
-    background-position: 50% 50%;
-    background-size: cover;
-  }
-</style>
-{% unless template == 'index' or template == 'collection' %}
-  <div class="header-bg"></div>
-{% endunless %}
 
 {% schema %}
   {
@@ -120,12 +135,6 @@
         "type": "text",
         "id": "banner_text",
         "label": "Banner Text",
-        "default": "Enter something here"
-      },
-      {
-        "type": "text",
-        "id": "banner_text_secondary",
-        "label": "Banner Middle Text",
         "default": "Enter something here"
       },
       {

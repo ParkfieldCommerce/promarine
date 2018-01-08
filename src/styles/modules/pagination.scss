@@ -1,0 +1,45 @@
+.pagination {
+		margin: 0 0 20px;
+		text-align: center;
+		.page {
+			color: #979797;
+			border: none;
+			margin: 0 3%;
+			a {
+				border: none;
+				color: #979797;
+				&:hover {
+					background: none;
+					color: #000;
+					transition: 0.3s;
+				}
+			}
+			&.current {
+				background: none;
+				color: #000;
+				text-decoration: underline;
+				border: none;
+				&:hover {
+					background: none;
+				}
+			}
+		}
+
+		.deco {
+			color: #979797;
+		}
+
+		.next,
+		.prev {
+			a {
+				border: none;
+				color: #979797;
+				&:hover {
+					background: none;
+					color: #000;
+					transition: 0.3s;
+				}
+			}
+		}
+
+	}

@@ -80,11 +80,71 @@
 // Popup Cart
 
 #PopupCart {
-  .popup-content {
-    width: 400px;
+  font-family: 'Poppins';
+
+  a {
+    color: #2d2d2d;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    &.btn {
+      color: #fff;
+      display: block;
+      font-size: 14px;
+      width: 70%;
+      margin-top: 15px;
+      margin-bottom: 15px;
+      @include s() {
+        width: 200px;
+      }
+      &:hover {
+        color: #000;
+      }
+    }
   }
+
+  .quantity-adjust {
+    .quantity {
+      height: 41px;
+      line-height: 27px;
+    }
+  }
+
+  .checkout-btn {
+    a.btn {
+      margin: auto;
+      margin-top: 25px;
+    }
+  }
+
+  .items {
+    padding: 20px 40px;
+    @include s() {
+      padding: 20px;
+    }
+  }
+
+  .at-checkout,
+  .cart-item {
+    padding: 0px 40px;
+  }
+
+  .popup-content {
+    width: 500px;
+    padding: 0;
+  }
+
+  .title {
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    padding: 20px 0;
+    background: #f1f1f1;
+  }
+
   p {
     margin-bottom: $gutter/3;
+    white-space: normal;
   }
   .cart-item {
     margin-bottom: $gutter/3;
@@ -96,5 +156,84 @@
 #PopupAccount {
   .popup-content {
     width: 400px;
+  }
+}
+
+// Address Edit Popup
+.edit_address,
+.new_address,
+.delete_address {
+  .popup-content {
+    padding: 0;
+    h4 {
+      font-size: 18px;
+      font-weight: 600;
+      text-align: center;
+      padding: 20px 0;
+      background: #f1f1f1;
+      margin-bottom: 15px;    
+    }
+    form {
+      display: block;
+      width: 90%;
+      margin: 0 auto;
+      box-shadow: $boxShadow;
+      padding: 10px;
+      label {
+        padding: 10px 0;
+      }
+      input,
+      select {
+        height: 49px;
+        line-height: normal;
+        border: none;
+        box-shadow: $boxShadow;
+        background: #fff;
+        color: #00499E;
+        &:focus {
+          border: 1px solid #00499E;
+        }
+      }
+
+      input[type="checkbox"] {
+        box-shadow: none;
+      }
+
+      .actions {
+        display: block;
+        a.btn {
+          display: inline-block;
+        }
+        @include s() {
+          a.btn {
+            display: block;
+            width: 90%;
+            margin: 0 auto;
+            margin-bottom: 10px;
+            &.cancel {
+              float: none;
+            }
+          }
+        }
+        .action-hide {
+          display: none;
+        }
+        .cancel {
+          float: right;
+        }
+      }
+    }
+    .delete-info {
+      padding: 20px;
+      .actions {
+        .cancel {
+          float: right;
+          @include s() {
+            float: none;
+            margin-top: 10px;
+          }
+        }
+      }
+    }
   }
 }

@@ -11,7 +11,6 @@
   {% assign sold_out = false %}
 {% endif %}
 <style>
-  .header-bg,
   .quick-add {
     background: url({{ section.settings.header_bg_picker | img_url:'master' }});
     background-position: 50% 50%;
@@ -23,7 +22,7 @@
   <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
   <meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
   
-  <div class="product-crumbs
+  <div class="crumbs
   {% if section.settings.breadcrumb_position == 'left' %}crumb-left{% endif %}
   {% if section.settings.breadcrumb_position == 'right' %}crumb-right{% endif %}">
     {% include 'theme-breadcrumbs' %}
@@ -43,8 +42,10 @@
         {% if product.images.size > 1 %}
           <div id="ProductThumbs" class="row collapse">
             {% for image in product.images %}
-              <div class="column l3 m3 s2 thumb-img">
-                <img src="{{ image.src | img_url: '1024x1024' }}"{% if image.alt %} alt="{{ image.alt }}"{% endif %}>
+              <div class="column l2 m2 s2">
+                <div class="thumb-img">
+                  <img src="{{ image.src | img_url: '1024x1024' }}"{% if image.alt %} alt="{{ image.alt }}"{% endif %}>
+                </div>
               </div>
             {% endfor %}
           </div>
@@ -52,6 +53,14 @@
 
         <h4 class="share-title">{{ 'social.share.title' | t }}</h4>
         {% include 'social-sharing' %}
+
+        <div class="product-calculator s-hide">
+          <h3 class="title">How much do I need?</h3>
+          <div class="calculator">
+            <iframe src="https://services.cognitoforms.com/f/wDw7xcSDAUSMDiWgK7xJ0Q?id=3" width="100%" height="274px" frameborder="0" scrolling="no"></iframe>
+            <script type="text/javascript" src="https://services.cognitoforms.com/scripts/embed.js"></script>
+          </div>
+        </div>
 
       </div>
       <div class="column l6 m6 s12">
@@ -69,13 +78,17 @@
               {{ current_variant.price | money }}
             </span>
 
-            {% if on_sale %}
+            {% comment %}{% if on_sale %}
               <p id="OnSale">
                 <span class="hidden">{{ 'product.original_price' | t }}</span>
                 <span>{{ 'product.original_price' | t }}</span>
                 <s id="ComparePrice">{{ product.compare_at_price | money }}</s>
               </p>
-            {% endif %}
+            {% endif %}{% endcomment %}
+
+            <div class="yotpo bottomLine"
+              data-product-id="{{ product.id }}">
+            </div>
 
             <div class="row l-table m-table">
               <div class="column l8 m6 s12">
@@ -133,9 +146,9 @@
                   <span id="AddToCartText">{{ 'product.sold_out' | t }}</span>
                 </a>
               {% else %}
-                <a type="submit" class="btn primary-btn" name="add" data-add-to-cart>
+                <button href="/cart" type="submit" class="btn primary-btn" name="add" {% comment %}data-add-to-cart{% endcomment %}>
                   <span id="AddToCartText">{{ 'product.add_to_cart' | t }}</span>
-                </a>
+                </button>
               {% endif %}
             </div>
           </form>
@@ -152,7 +165,7 @@
           <p>{{ product.description | strip_html }}</p>
         </div>
 
-        <div class="product-calculator">
+        <div class="product-calculator l-hide m-hide">
           <h3 class="title">How much do I need?</h3>
           <div class="calculator">
             <iframe src="https://services.cognitoforms.com/f/wDw7xcSDAUSMDiWgK7xJ0Q?id=3" width="100%" height="274px" frameborder="0" scrolling="no"></iframe>
@@ -160,7 +173,7 @@
           </div>
         </div>
 
-        {% if collection %}
+        {% comment %}{% if collection %}
           {% if collection.previous_product or collection.next_product %}
             <p>
               {% if collection.previous_product %}
@@ -175,13 +188,14 @@
               {% endif %}
             </p>
           {% endif %}
-        {% endif %}
+        {% endif %}{% endcomment %}
 
       </div>
     </div>
   </div>
 </section>
 
+{% include 'yotpo-widget' %}
 {% include 'faq-section' %}
 {% include 'howto-section' %}
 {% if section.settings.quick_add %}

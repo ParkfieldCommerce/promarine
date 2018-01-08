@@ -1,12 +1,10 @@
 .faq-section {
   padding: 40px 0;
-  font-family: 'Poppins';
   @include s() {
     padding: 10px 0;
   }
   .title {
-    font-weight: 500;
-    font-size: 24px;
+    @include poppins(24px, 600, normal);
     text-align: center;
     margin: 40px 0;
     @include s() {
@@ -14,10 +12,10 @@
     }
   }
   .faq-block {
+    @include poppins(18px, 500, normal);
     box-shadow: $boxShadow;
     padding: 40px 100px;
     margin: 50px 0;
-    font-size: 18px;
     @include s() {
       padding: 20px 10px;
       overflow-x: auto;

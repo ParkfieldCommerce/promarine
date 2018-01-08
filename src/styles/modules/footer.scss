@@ -48,7 +48,7 @@
       margin: 9px 0;
       font-weight: 500;
       @include s() {
-        margin: 15px 0;
+        margin: 20px 0;
       }
     }
     a {
@@ -64,6 +64,10 @@
     margin-bottom: 5px;
   }
   ul.inline {
+    margin: 10px 0 15px;
+    .icon {
+      font-size: 1.4em;
+    }
     @include s() {
       width: 100%;
     }

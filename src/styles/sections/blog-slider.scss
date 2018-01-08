@@ -29,7 +29,7 @@
     box-shadow: $boxShadow;
     background: #fff;
     width: 350px;
-    height: 540px;
+    height: 560px;
     margin: 0 auto;
     text-align: center;
     position: relative;
@@ -68,6 +68,25 @@
       }
     }
 
+    .action {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px;
+      a.btn {
+        display: block;
+        width: 50%;
+        margin: auto;
+        @include m() {
+          width: 100%;
+        }
+        @include s() {
+          width: 100%;
+        }
+      }
+    }
+
     &.block-1 {
       margin-left: 0;
       margin-right: auto;
@@ -85,25 +104,24 @@
     }
   }
 
-  .blog-prev {
+  .blog-prev,
+  .blog-next {
     position: absolute;
-    left: -58px;
     top: 270px;
-    color: #000;
+    color: #979797;
     font-size: 3em;
     z-index: 99;
+  }
+
+  .blog-prev {
+    left: -58px;
     @include s() {
       left: 12px;
     }
   }
 
   .blog-next {
-    position: absolute;
     right: -58px;
-    top: 270px;
-    color: #000;
-    font-size: 3em;
-    z-index: 99;
     @include s() {
       right: 12px;
     }

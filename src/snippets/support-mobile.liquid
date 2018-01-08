@@ -1,0 +1,20 @@
+<div class="support-mobile">
+	<div class="feature-product">
+		<div class="row">
+
+			{% for tag in article.tags %}
+				{% if tag contains 'featured-product' %}
+					{% assign product_handle = tag | split:'_' | last %}
+					{% assign product = all_products[product_handle] %}
+					{% include 'collection-product' %}
+				{% endif %}
+			{% endfor %}
+
+			<div class="column m12 s12">
+				<div class="mb-guide">
+					{% include 'support-sidebar' %}
+				</div>
+			</div>	
+		</div>
+	</div>
+</div>

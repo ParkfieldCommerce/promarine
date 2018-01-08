@@ -5,18 +5,19 @@
 
       <div class="column l4 m6 s12">
         <h1 class="product-title" itemprop="name">{{ product.title }} <span id="QuickAddPrice"></span></h1>
+
+        {% comment %}{% if on_sale %}
+          <p id="OnSale">
+            <span class="hidden">{{ 'product.original_price' | t }}</span>
+            <span>{{ 'product.original_price' | t }}</span>
+            <s id="ComparePrice">{{ product.compare_at_price | money }}</s>
+          </p>
+        {% endif %}{% endcomment %}
+        
       </div>
 
       <div class="column l8 m6 s12">
         <form action="/cart/add" method="post" enctype="multipart/form-data" id="QuickAddToCartForm" data-cart-submit>
-
-          {% if on_sale %}
-            <p id="OnSale">
-              <span class="hidden">{{ 'product.original_price' | t }}</span>
-              <span>{{ 'product.original_price' | t }}</span>
-              <s id="ComparePrice">{{ product.compare_at_price | money }}</s>
-            </p>
-          {% endif %}
 
           <div class="row">
             <div class="column l4 m3 s12">
@@ -70,7 +71,7 @@
               </div>
             </div>
 
-            <div class="column l4 m6 s12">
+            <div class="column l4 m12 s12">
               <div class="submit-area">
                 {% if sold_out %}
                   <a type="submit" name="add" class="btn secondary-btn" data-add-to-cart disabled>

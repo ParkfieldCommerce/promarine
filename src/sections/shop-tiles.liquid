@@ -11,7 +11,15 @@
     background-position: 50% 50%;
     background-size: cover;
   }
+
+  .secondary-tile.tile-{{forloop.index}} .transparent-secondary-btn {
+    border-bottom: 3px solid {{ block.settings.btn_border_bottom }}!important;
+  }
   {% endfor %}
+
+  .featured-tile .transparent-secondary-btn {
+    border-bottom: 3px solid {{ section.settings.btn_border_bottom }}!important;
+  }
 </style>
 
 <section class="shop-tiles">
@@ -105,6 +113,11 @@
       "type": "url",
       "id": "featured_button_url",
       "label": "Button URL"
+    },
+    {
+      "type": "color",
+      "id": "btn_border_bottom",
+      "label": "Button bottom border color"
     }
   ],
   "blocks": [
@@ -131,6 +144,11 @@
           "type": "url",
           "id": "block_button_url",
           "label": "Button URL"
+        },
+        {
+          "type": "color",
+          "id": "btn_border_bottom",
+          "label": "Button bottom border color"
         }
       ]
     }

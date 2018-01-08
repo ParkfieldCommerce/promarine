@@ -1,0 +1,115 @@
+.contact-us {
+	text-align: center;
+	background: rgba(#fff, 0.9);
+	position: relative;
+	z-index: 1;
+	padding: 20px 0 40px;
+	@include s() {
+		padding: 20px 4% 40px;
+	}
+	&:after {
+		position: absolute;
+	    top: 0;
+	    height: 100%;
+	    left: 0;
+	    width: 100%;
+	    content: '';
+		z-index: -1;
+		opacity: 0.1;
+	}
+
+	.title {
+		@include poppins(24px, 600, normal);
+		color: #253d83;
+		@include s() {
+			font-size: 18px;
+			margin: 20px 0;
+		}
+	}
+
+	.rte {
+		@include poppins(18px, 500, normal);
+		text-align: center;
+		color: #253d83;
+		@include s() {
+			@include poppins(14px, 500, normal);
+			line-height: 30px;
+		}
+	}
+
+	.contact-form {
+		label {
+			@include poppins(18px, 500, normal);
+	    text-align: left;
+	    color: #2f3b70;
+	    padding-left: 30px;
+	    margin: 40px 0 10px;
+	    line-height: normal;
+	    @include s() {
+	    	padding-left: 5px;
+	    	margin-top: 30px;
+	    	margin-bottom: 15px;
+	    }
+		}
+
+		input {
+			width: 95%;
+			color: #000;
+			background: #fff;
+			height: 48px;
+			box-shadow: $boxShadow;
+			border: none;
+			border-radius: 5px;
+			line-height: normal;
+			position: relative;
+			z-index: 1;
+			&:focus {
+				border: 1px solid #00499E;
+			}
+		}
+
+		textarea {
+			width: 98%;
+			height: 240px;
+			overflow: auto;
+		    background: #fff;
+		    border: none;
+		    color: #000;
+		    position: relative;
+		    z-index: 1;
+		    line-height: normal;
+		    padding: 15px;
+		    resize: none;
+		    box-shadow: $boxShadow;
+		    &:focus {
+				border: 1px solid #00499E;
+			}
+		}
+
+		.submit {
+			display: inline-block;
+			width: 100%;
+			margin: 32px 0;
+
+			a.btn {
+				@include poppins(18px, 600, normal);
+				display: inline-block;
+				float: right;
+				margin-right: 12px;
+				width: 10%;
+				@include m() {
+					width: 20%;
+				}
+				@include s() {
+					width: 95%;
+					margin: 0;
+					float: none;
+				}
+			}
+
+			input[type="submit"] {
+				display: none;
+			}
+		}
+	}
+}

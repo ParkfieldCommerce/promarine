@@ -1,11 +1,12 @@
 <!-- /templates/blog.liquid -->
+{% paginate blog.articles by 7 %}
 
-{% paginate blog.articles by 4 %}
-
-  <div class="container l">
-    <div class="row">
-
-      <div class="column l8 m12 s12">
+  <section class="blog-page">
+    <div class="container l">
+      <div class="crumbs">
+        {% include 'theme-breadcrumbs' %}
+      </div>
+      <div class="row">
 
         {% if current_tags %}
           <h1>{{ blog.title | link_to: blog.url }} &mdash; {{ current_tags.first }}</h1>
@@ -13,64 +14,108 @@
           <h1>{{ blog.title }}</h1>
         {% endif %}
 
-        {% for article in blog.articles %}
+        {% for article in blog.articles limit: 1 %}
 
-          <div class="article">
+          {% capture date %}
+            <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+              {{ article.published_at | date: '%b. %e' }}
+            </time>
+          {% endcapture %}
 
-            <h2 class="h3"><a href="{{ article.url }}">{{ article.title }}</a></h2>
+          <div class="column l12 m12 s12 latest-article">
+            <div class="row">
 
-            {% capture author %}<strong>{{ article.author }}</strong>{% endcapture %}
-            {% capture date %}<time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%A, %-d %B, %Y' }}</time>{% endcapture %}
-            <p>{{ 'blog.article.author_on_date_html' | t: author: author, date: date }}
-              {% if article.tags.size > 0 %}
-                <br>
-                <span>{{ 'common.tags' | t }}:</span>
-                {% for tag in article.tags %}
-                  <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
-                {% endfor %}
-              {% endif %}
-              {% if blog.comments_enabled? %}
-                <br>
-                <a href="{{ article.url }}#comments">{{ 'blog.comments.with_count' | t: count: article.comments_count }}</a>
-              {% endif %}
-            </p>
+              <div class="column l4 m4 s12 featured-img">
+                {% if article.image %}
+                  <a href="{{ article.url }}">
+                    {{ article | img_url: '1024x1024' | img_tag: article.title }}
+                  </a>
+                {% endif %}
+                <div class="date-block">
+                  {{ date }}
+                </div>
+              </div>
 
-            {% if article.image %}
-              <a href="{{ article.url }}">
-                {{ article | img_url: '1024x1024' | img_tag: article.title }}
-              </a>
-            {% endif %}
+              <div class="column l8 m8 s12 featured-body">
+                <h4>
+                  <a href="{{ article.url }}">{{ article.title }}</a>
+                </h4>
+                {% if article.excerpt.size > 0 %}
+                  {{ article.excerpt }}
+                {% else %}
+                  <p>{{ article.content | strip_html | truncatewords: 100 }}</p>
+                {% endif %}
+            
+                <div class="action">
+                  <a href="{{ article.url }}" class="btn primary-btn">{{ 'blog.article.read_more' | t }}</a>
+                </div>
+                
+              </div>
 
-            <div class="rte">
-              {% if article.excerpt.size > 0 %}
-                {{ article.excerpt }}
-              {% else %}
-                <p>{{ article.content | strip_html | truncatewords: 100 }}</p>
-              {% endif %}
             </div>
-
-            <p><a href="{{ article.url }}">{{ 'blog.article.read_more' | t }}</a></p>
-
           </div>
-
-          {% unless forloop.last %}<hr>{% endunless %}
 
         {% endfor %}
+      </div>
+    </div>
 
-        {% if paginate.pages > 1 %}
-          <hr>
-          <div class="pagination">
-            {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+    <div class="container l">
+      <div class="row">
+        {% for article in blog.articles | offset: 1 %}
+
+          {% capture date %}
+            <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+              {{ article.published_at | date: '%b. %e' }}
+            </time>
+          {% endcapture %}
+
+          <div class="column l4 m6 s12 column-{{ forloop.index }}">
+            <div class="blog-block block-{{ forloop.index }}">
+              <div class="blog-image">
+
+                {% if article.image %}
+                  <a href="{{ article.url }}" class="image">
+                    {{ article | img_url: 'master' | img_tag: article.title }}
+                  </a>
+                {% endif %}
+
+                <div class="date-block">
+                  {{ date }}
+                </div>
+
+              </div>
+
+              <div class="blog-description">
+
+                <h4>
+                  <a href="{{ article.url }}">{{ article.title }}</a>
+                </h4>
+
+              </div>
+
+              <div class="blog-btn">
+                <a href="{{ article.url }}" class="btn primary-btn">{{ 'blog.article.read_more' | t }}</a>
+              </div>
+              
+            </div>
           </div>
-        {% endif %}
 
+          <style>
+            .column.column-{{ forloop.index }} {
+              margin-bottom: 30px;
+            }
+          </style>
+
+        {% endfor %}
       </div>
 
-      <div class="column l4 m-hide s-hide">
-        {% include 'blog-sidebar' %}
-      </div>
+      {% if paginate.pages > 1 %}
+        <div class="pagination">
+          {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+        </div>
+      {% endif %}
 
     </div>
-  </div>
+  </section>
 
 {% endpaginate %}

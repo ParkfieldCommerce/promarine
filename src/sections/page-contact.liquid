@@ -1,0 +1,99 @@
+<style>
+  .contact-us:after {
+    background: url({{ section.settings.body_bg | img_url:'master' }});
+    background-position: 50% 50%;
+    background-size: cover;
+  }
+
+  .header-bg {
+    margin-bottom: 0;
+  }
+</style>
+<section class="contact-us">
+  <div class="container l">
+    <div class="crumbs">
+      {% include 'theme-breadcrumbs' %}
+    </div>
+    <div class="body">
+      <h1 class="title">{{ page.title }}</h1>
+      <div class="rte">
+        {{ page.content }}
+      </div>
+      <div class="contact-form">
+        {% form 'contact' %}
+          {% if form.posted_successfully? %}
+            <p class="note form-success">
+              {{ 'form.contact.success' | t }}
+            </p>
+          {% endif %}
+
+          {{ form.errors | default_errors }}
+          <div class="row">
+
+            <div class="column l6 m6 s6">
+
+              {% assign name_attr = 'form.name' | t | handleize %}
+              <label for="ContactFormName" class="clearfix">{{ 'form.name' | t }}</label>
+              <input type="text" id="ContactFormName" name="contact[{{ name_attr }}]" autocapitalize="words" value="{% if form[name_attr] %}{{ form[name_attr] }}{% elsif customer %}{{ customer.name }}{% endif %}" required>
+              
+            </div>
+
+            <div class="column l6 m6 s6">
+
+              <label for="ContactFormEmail" class="clearfix">{{ 'form.email' | t }}</label>
+              <input type="email" id="ContactFormEmail" name="contact[email]" autocorrect="off" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" required>
+              
+            </div>
+
+            <div class="column l6 m6 s6">
+
+              {% assign name_attr = 'form.order_number' | t | handleize %}
+              <label for="ContactFormOrderNumber" class="clearfix">{{ 'form.order_number' | t }}</label>
+              <input type="number" id="ContactFormOrderNumber" name="contact[{{ name_attr }}]" pattern="[0-9\-]*" value="{% if form[name_attr] %}{{ form[name_attr] }}{% elsif customer %}{{ customer.order_number }}{% endif %}">
+              
+            </div>
+
+            <div class="column l6 m6 s6">
+
+              {% assign name_attr = 'form.company_name' | t | handleize %}
+              <label for="ContactFormCompanyName" class="clearfix">{{ 'form.company_name' | t }}</label>
+              <input type="text" id="ContactFormCompanyName" name="contact[{{ name_attr }}]" autocapitalize="words" value="{% if form[name_attr] %}{{ form[name_attr] }}{% elsif customer %}{{ customer.company_name }}{% endif %}">
+
+            </div>
+
+            <div class="column l12 m12 s12">
+
+              <label for="ContactFormMessage" class="clearfix">{{ 'form.message' | t }}</label>
+              <textarea rows="10" id="ContactFormMessage" name="contact[body]" required>{% if form.body %}{{ form.body }}{% endif %}</textarea>
+              
+            </div>
+
+            <div class="submit">
+              <a class="btn primary-btn" id="contact-submit-trigger" >{{ 'form.send' | t }}</a>
+              <input type="submit" class="contact-submit" value="{{ 'form.send' | t }}">
+            </div>
+          
+          </div>
+        {% endform %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Contact Page",
+  "class": "contact-page",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Contact Us"
+    },
+    {
+      "type": "image_picker",
+      "id": "body_bg",
+      "label": "Background for body"
+    }
+  ]
+}
+{% endschema %}

@@ -15,39 +15,53 @@
  {% assign sold_out = false %}
 {% endif %}
 
-<div class="{{ column_width }} product {% if sold_out %} sold_out {% endif %} {% if on_sale %} on_sale {% endif %}">
+<div class="{{ column_width }} product-block {% if sold_out %} sold_out {% endif %} {% if on_sale %} on_sale {% endif %}">
+  <div class="product">
+    <div class="product-image">
+      
+      <div class="product-feature">
+        <div class="action">
+          <a class="btn transparent-secondary-btn" href="{{ product.url | within: collection }}">Shop Now</a>
+        </div>
+      </div>
 
-    <a href="{{ product.url | within: collection }}">
-      <img srcset="{{ product.featured_image.src | img_url: 'x960' }} 2x" src="{{ product.featured_image.src | img_url: 'x960' }}" alt="{{ product.featured_image.alt | escape }}">
-    </a>
-
-    <p>
+      <a href="{{ product.url | within: collection }}">
+        <img srcset="{{ product.featured_image.src | img_url: 'x960' }} 2x" src="{{ product.featured_image.src | img_url: 'x960' }}" alt="{{ product.featured_image.alt | escape }}">
+      </a>
+    </div>
+    
+    <div class="product-info">
       <a href="{{ product.url | within: collection }}" class="product-title">{{ product.title }}</a><br>
-      {% if on_sale %}
-        {% if product.price_varies %}
-          {{ 'product.on_sale_from_html' | t: price: sale_price }}
+      <p>
+        {% if on_sale %}
+          {% if product.price_varies %}
+            {{ 'product.on_sale_from_html' | t: price: sale_price }}
+          {% else %}
+            <strong>{{ 'product.on_sale_html' | t: price: sale_price }}</strong>
+          {% endif %}
         {% else %}
-          <strong>{{ 'product.on_sale_html' | t: price: sale_price }}</strong>
+          {% if product.price_varies %}
+            {% assign price = product.price | money %}
+            {{ 'product.priced_from_html' | t: price: price }}
+          {% else %}
+            {{ product.price | money }}
+          {% endif %}
         {% endif %}
-      {% else %}
-        {% if product.price_varies %}
-          {% assign price = product.price | money %}
-          {{ 'product.priced_from_html' | t: price: price }}
-        {% else %}
-          {{ product.price | money }}
+        {% if on_sale %}
+          <span class="hidden">{{ 'product.original_price' | t }}</span>
+          <s>{{ product.compare_at_price | money }}</s>
         {% endif %}
-      {% endif %}
-      {% if on_sale %}
-        <span class="hidden">{{ 'product.original_price' | t }}</span>
-        <s>{{ product.compare_at_price | money }}</s>
-      {% endif %}
-    </p>
-
-    <p>
-      asdkjbhgfasdkjfasdkhjlk
-      <button {% if sold_out %} class="disabled" disabled{% else %}type="submit" name="add" data-quick-add="{{ product.first_available_variant.id }}"{% endif %}>
-        <span id="AddToCartText">{% if sold_out %}{{ 'product.sold_out' | t }}{% else %}{{ 'product.add_to_cart' | t }}{% endif %}</span>
-      </button>
-    </p>
+      </p>
+      
+    </div>
+    <div class="yotpo bottomLine"
+      data-product-id="{{ product.id }}">
+    </div>
+    <div class="action">
+      <a href="{{ product.url | within: collection }}" {% if sold_out %} class="disabled" disabled{% else %} class="btn primary-btn" {% comment %}type="submit" name="add" data-quick-add="{{ product.first_available_variant.id }}"{% endcomment %}{% endif %}>
+        <span id="AddToCartText">{% if sold_out %}{{ 'product.sold_out' | t }}{% else %}{% comment %}{{ 'product.add_to_cart' | t }}{% endcomment %}Shop Now{% endif %}</span>
+      </a>
+    </div>
+  </div>
 
 </div>

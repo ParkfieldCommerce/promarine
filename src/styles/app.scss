@@ -37,6 +37,14 @@
 @import url('modules/product.scss');
 @import url('modules/buttons.scss');
 @import url('modules/collections.scss');
+@import url('modules/blog.scss');
+@import url('modules/article.scss');
+@import url('modules/contact.scss');
+@import url('modules/crumbs.scss');
+@import url('modules/search.scss');
+@import url('modules/pagination.scss');
+@import url('modules/addresses.scss');
+@import url('modules/order.scss');
 
 /* Sections ===================================================================*/
 @import url('sections/hero.scss');
@@ -46,6 +54,12 @@
 @import url('sections/faq-section.scss');
 @import url('sections/howto-section.scss');
 @import url('sections/product-quick-add.scss');
+@import url('sections/aboutus.scss');
+@import url('sections/support-page.scss');
+@import url('sections/login-register.scss');
+@import url('sections/account.scss');
+@import url('sections/yotpo-widget.scss');
+@import url('sections/reviews-page.scss');
 
 /* Helpers ===================================================================*/
 @import url('global/helpers.scss');
@@ -59,5 +73,24 @@
 
 // Shopify capture challenge
 .shopify-challenge__container {
-  text-align: center;
+  	text-align: center;
+  	margin: 135px auto;
+	.shopify-challenge__button {
+		display: block;
+		margin: 0 auto;
+		padding: 10px 30px;
+		height: 50px;
+		border-radius: 24px;
+		border: none;
+		box-shadow: $boxShadow;
+		background-color: $colorBtnPrimary;
+	    color: $colorBtnTextPrimary;
+	    &:hover {
+	      background-color: $colorBtnSecondary;
+	      color: $colorBtnTextSecondary;
+	      transition: 0.3s;
+	    }
+	}
 }
+
+

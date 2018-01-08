@@ -59,8 +59,8 @@
         margin: 0;
         margin-top: 10px;
       }
-      &:after {
-        top: 28px;
+      &:before {
+        top: 27px;
       }
     }
   }
@@ -105,9 +105,9 @@
   }
 
   .submit-area {
-    margin: 30px 0 0 0;
+    margin: 10px 0 0 0;
     @include m() {
-      margin-top: 10px;
+      margin-top: 5px;
       a.btn {
         display: block;
       }

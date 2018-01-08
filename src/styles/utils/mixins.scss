@@ -148,3 +148,26 @@
     }
   }
 }
+
+// Fonts
+
+
+@font-face {
+  font-family: 'Poppins';
+  font-weight: 600;
+  font-style: normal;
+}
+
+@mixin poppins($font-size, $font-weight, $font-style) {
+  font-family: 'Poppins', sans-serif;
+  font-size: $font-size;
+  font-style: $font-style;
+  font-weight: $font-weight;
+}
+
+@mixin roboto($font-size, $font-weight, $font-style) {
+  font-family: 'Roboto', sans-serif;
+  font-size: $font-size;
+  font-style: $font-style;
+  font-weight: $font-weight;
+}

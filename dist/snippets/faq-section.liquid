@@ -3,7 +3,7 @@
 =============================================================
 In order for this to work, two things need to happen:
 
-1. Tag Product with the Blog Handle
+1. Tag Product with the Main Blog Handle
     BE SURE TO ADD 'faqs_' before the handle
 
 2. Tag the article with the product handle
@@ -24,25 +24,26 @@ In order for this to work, two things need to happen:
   {% endif %}
 {% endfor %}
 {% assign blog_array = blog_array | split: "," %}
+{% if blog_array != blank %}
+  <section class="faq-section">
+    <div class="container l">
 
-<section class="faq-section">
-  <div class="container l">
+      <h2 class="title">FAQs</h2>
 
-    <h2 class="title">FAQs</h2>
-
-    {% for handle in blog_array %}
-      {% assign faq = blogs[handle] %}
-      {% for article in faq.articles %}
-        {% for tag in article.tags %}
-          {% if tag == product.handle %}
-            <div class="faq-block">
-              <p class="lead">{{ article.title }}</p>
-              <p class="body">{{ article.content }}</p>
-            </div>
-          {% endif %}
+      {% for handle in blog_array %}
+        {% assign faq = blogs[handle] %}
+        {% for article in faq.articles %}
+          {% for tag in article.tags %}
+            {% if tag == product.handle %}
+              <div class="faq-block">
+                <p class="lead">{{ article.title }}</p>
+                <p class="body">{{ article.content }}</p>
+              </div>
+            {% endif %}
+          {% endfor %}
         {% endfor %}
       {% endfor %}
-    {% endfor %}
 
-  </div>
-</section>
+    </div>
+  </section>
+{% endif %}

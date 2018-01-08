@@ -1,0 +1,295 @@
+.article-page {
+	text-align: center;
+	position: relative;
+	min-height: 700px;
+	@include s() {
+		padding: 0 20px;
+	}
+
+	&.howto {
+		background: #f9f9f9;
+	}
+
+	.support-sidebar {
+		width: 350px;
+		background: #fff;
+		display: block;
+		position: absolute;
+		top: 40px;
+		left: 0;
+		bottom: 20%;
+		box-shadow: $boxShadow;
+		overflow-x: auto;
+		@include m() {
+			display: none;
+		}
+		@include s() {
+			display: none;
+		}
+		.title-bar {
+			@include poppins(14px, 500, normal);
+			background: #00499E;
+			color: #fff;
+			padding: 15px 5px 15px 60px;
+			text-align: left;
+			cursor: pointer;
+			i {
+				float: right;
+				padding: 6px 18px;
+			}
+		}
+
+		.article-title {
+			padding: 5px 5px 5px 100px;
+			text-align: left;
+			margin-bottom: 0.8rem;
+			a {
+				font-size: 14px;
+				line-height: 21px;
+				color: #000;
+				text-decoration: none;
+			}
+		}
+
+		.article-pane {
+			display: none;
+		}
+
+		.section-bar {
+			color: #000;
+			font-size: 14px;
+			text-align: left;
+			background: #f4f4f4;
+			font-weight: normal;
+			margin: 10px 0 10px 60px;
+			padding: 15px 23px 15px 40px;
+			position: relative;
+			cursor: pointer;
+			i {
+				float: right;
+				padding: 6px 0px;
+			}
+		}
+
+		.section-pane {
+			display: none;
+		}
+	}
+
+	.search-bar {
+		a {
+			color: #000;
+			font-family: 'Poppins';
+			font-weight: 500;
+			font-size: 18px;
+			text-align: center;
+			text-decoration: none;
+			i {
+				font-weight: bold;
+				font-size: 20px;
+				padding: 5px;
+			}
+		}
+
+		.back {
+			display: inline-block;
+			width: 35%;
+		}
+
+		form {
+			display: inline-block;
+			width: 55%;
+			position: relative;
+
+			input[type="text"] {
+				height: 27px;
+				border-radius: 25px;
+				margin-left: 7px;
+				padding: 2px 30px 2px 10px;
+				font-size: 10px;
+			}
+
+			.icon {
+				position: absolute;
+				top: 5px;
+				right: 5px;
+			}
+		}
+	}
+
+	.article {
+		max-width: 715px;
+		font-family: 'Poppins';
+		margin: 0 auto;
+		@include s() {
+			overflow: auto;
+		}
+
+		a {
+			color: #00499E;
+		}
+
+		&.howto-article {
+			width: 100%;
+			max-width: 100%;
+			.howto-feature {
+				margin-bottom: 2em;
+			}
+			h4.share {
+				margin-top: 4em;
+			}
+			.social-sharing {
+				margin-top: 20px;
+				margin-bottom: 4em;
+			}
+			.block {
+				margin: 2em 0;
+			}
+		}
+
+		.title {
+			@include poppins(24px, 600, normal);
+			@include s() {
+				font-size: 18px;
+			}
+		}
+
+		.date {
+			color: #979797;
+			font-size: 14px;
+			font-weight: 600;
+		}
+
+		.rte {
+			font-family: 'Roboto', sans-serif;
+			padding: 20px 35px;
+			text-align: justify;
+			margin-bottom: 5em;
+			@include s() {
+				padding: 20px 10px;
+				p {
+					font-size: 18px;
+				}
+			}
+		}
+
+		.share {
+			color: #979797;
+		}
+
+		.tags {
+			font-size: 18px;
+			a {
+				color: #000;
+				text-decoration: none;
+			}
+		}
+
+		.block {
+			box-shadow: $boxShadow;
+			padding: 0px;
+			background: #fff;
+			text-align: justify;
+			margin-bottom: 0 20px;
+			a {
+				color: rgb(34,46,106);
+				cursor: pointer;
+			}
+			p {
+				padding: 20px;
+				margin-bottom: 0px;
+			}
+			img {
+				width: 100%;
+			}
+		}
+
+		#prevArticle,
+		#nextArticle {
+			a {
+				color: #979797;
+				text-decoration: none;
+				display: inline-block;
+				border: 1px solid #979797;
+				position: relative;
+				text-align: center;
+				@include s() {
+					font-size: 13px;
+					width: 100%;
+				}
+			}
+		}
+
+		#prevArticle {
+			a {
+				padding: 15px 10px 15px 40px;
+				&:after {
+					content: '\f053';
+					position: absolute;
+					font-family: 'FontAwesome';
+					top: 16px;
+					left: 12px;
+				}
+			}
+		}
+
+		#nextArticle {
+			a {
+				padding: 15px 40px 15px 10px;
+				&:after {
+					content: '\f054';
+					position: absolute;
+					font-family: 'FontAwesome';
+					top: 16px;
+					right: 12px;
+				}
+			}
+		}
+
+		.article-paginate {
+			margin: 50px 0;
+		}
+	}
+
+	.support-mobile {
+
+		.feature-product {
+			.product-block {
+				display: block;
+				float: none;
+				margin: auto;
+				.product {
+					display: inline-block;
+					box-shadow: $boxShadow;
+					padding: 30px;
+					margin: 2em 0;
+				}
+			}
+			.product-info {
+				a {
+					color: #000;
+					text-decoration: none;
+					&.btn {
+						color: #fff;
+					}
+				}
+			}
+		}
+
+		.mb-guide {
+			display: none;
+			@include m() {
+				display: block;
+			}
+			@include s() {
+				display: block;
+			}
+			.support-sidebar {
+				position: relative;
+				display: block;
+				width: 100%;
+				margin-bottom: 50px;
+			}
+		}
+	}
+}

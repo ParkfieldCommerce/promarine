@@ -221,6 +221,28 @@ $iconLinecap: sqaure;
   }
 }
 
+// Fonts
+
+
+@font-face {
+  font-family: 'Poppins';
+  font-weight: 600;
+  font-style: normal;
+}
+
+@mixin poppins($font-size, $font-weight, $font-style) {
+  font-family: 'Poppins', sans-serif;
+  font-size: $font-size;
+  font-style: $font-style;
+  font-weight: $font-weight;
+}
+
+@mixin roboto($font-size, $font-weight, $font-style) {
+  font-family: 'Roboto', sans-serif;
+  font-size: $font-size;
+  font-style: $font-style;
+  font-weight: $font-weight;
+}
 
 /* Global ====================================================================*/
 /* Reset =====================================================================*/
@@ -311,6 +333,30 @@ form, input, textarea, label, fieldset, legend, select, optgroup, option, button
   font-style: normal;
   font-weight: 400;
   src: local('Poppins Regular'), local('Poppins-Regular'), url(https://fonts.gstatic.com/s/poppins/v5/TDTjCH39JjVycIF24TlO-Q.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Poppins SemiBold'), local('Poppins-SemiBold'), url(https://fonts.gstatic.com/s/poppins/v5/zO07Oxe3SOlw0l2YX2sdIS3USBnSvpkopQaUR-2r7iU.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Poppins Bold'), local('Poppins-Bold'), url(https://fonts.gstatic.com/s/poppins/v5/57TQ-anwthzkETEIO4jESC3USBnSvpkopQaUR-2r7iU.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 800;
+  src: local('Poppins ExtraBold'), local('Poppins-ExtraBold'), url(https://fonts.gstatic.com/s/poppins/v5/8r8-8SgrG43l26DF4-ttyy3USBnSvpkopQaUR-2r7iU.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Poppins Black'), local('Poppins-Black'), url(https://fonts.gstatic.com/s/poppins/v5/smjRqmQVzHFKuffY0wECxS3USBnSvpkopQaUR-2r7iU.ttf) format('truetype');
 }
 
 
@@ -445,13 +491,13 @@ input[type="submit"],
 input[type="reset"],
 select {
   max-width: 100%;
-  height: $gutter;
-  line-height: ($gutter - $borderWeight*2);
+  // height: $gutter;
+  // line-height: ($gutter - $borderWeight*2);
   padding: 0 $gutter/1.5;
-  font-size: 1.125rem;
+  font-size: 16px;
   color: lighten($colorBrand, 25%);
   background-color: $colorBrand;
-  border: $borderWeight $borderStyle $colorBrand;
+  // border: $borderWeight $borderStyle $colorBrand;
   border-radius: $borderRadius;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -524,6 +570,7 @@ a.button {
     color: lighten($colorHighlight, 50%);
   }
 }
+
 
 /* Grid System ===============================================================*/
 
@@ -693,7 +740,7 @@ form#address_form_new {
   input[type="password"],
   textarea,
   select,
-  button, .button {
+ .button {
     width: 100%;
     margin-bottom: $gutter/2;
   }
@@ -725,12 +772,21 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 }
 
 .header-mobile {
-  background: rgba($colorHeaderBackground, $header_bg_opacity);
   position: absolute;
   left: 0;
   right: 0;
   top: 0;
-  z-index: 99;
+  z-index: 15;
+  &:after {
+    background: rgba($colorHeaderBackground, $header_bg_opacity);
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: '';
+  }
   @include m() {
     display: none;
   }
@@ -822,22 +878,37 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 
   .header-navigation {
     padding: 0;
-    background: rgba(#fff, 0.5);
+    background: rgba(37, 61, 131, 0.5);
     ul {
       li {
+        border-top: 1px solid #000;
+        padding: 15px 15%;
+        @include poppins(24px, 600, normal);
+        text-shadow: $boxShadow;
+
         &:first-child {
           border-top: 0;
         }
-        border-top: 1px solid #000;
-        padding: 15px 15%;
-        font-family: 'Poppins';
-        font-size: 24px;
-        font-weight: 600;
-        text-shadow: $boxShadow;
+
         a {
-          width: 100%;
-          display: block;
+          width: 85%;
+          display: inline-block;
         }
+
+        .icon {
+          color: #fff;
+          text-shadow: $boxShadow;
+        }
+
+        .dropdown {
+          margin-top: 10px;
+          display: none;
+          li {
+            border: none;
+            margin-bottom: 10px;
+          }
+        }
+
       }
     }
   }
@@ -847,12 +918,21 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 // Desktop
 // ====================================================================
 .header {
-  background: rgba($colorHeaderBackground, $header_bg_opacity);
   position: absolute;
   left: 0;
   right: 0;
   top: 0;
   z-index: 99;
+  &:after {
+    background: rgba($colorHeaderBackground, $header_bg_opacity);
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: '';
+  }
   @include s() {
     display: none;
   }
@@ -862,13 +942,9 @@ form#AddToCartForm, form#CartPage, form#contact_form {
     background: $colorHeaderBackground;
 
     .banner-lead {
-      font-size: $bannerFontSize+px;
+      @include poppins($bannerFontSize+px, 600, normal);
       margin: 8px 0;
-      font-family: 'Poppins';
-      font-style: normal;
-      font-weight: 600;
       line-height: normal;
-      font-size: 12px;
     }
 
     .banner-actions {
@@ -921,6 +997,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
       margin-left: 25px;
       margin-right: 0;
       vertical-align: middle;
+      padding-top: 2px;
       @include m() {
         margin-left: 10px;
       }
@@ -961,6 +1038,38 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 
     li {
       margin: auto;
+      flex: 1;
+      position: relative;
+      .icon {
+        padding: 0 0 5px 5px;
+        color: #fff;
+      }
+      &:hover {
+        .dropdown {
+          opacity: 1;
+          z-index: 1;
+          transition: opacity 0.5s;
+        }
+      }
+    }
+
+    .dropdown {
+      opacity: 0;
+      z-index: -1;
+      display: block;
+      position: absolute;
+      top: 25px;
+      left: -50px;
+      text-align: center;
+      width: 200px;
+
+      li {
+        background: rgba(37, 61, 131, 0.85);
+        margin: 3px 0;
+        box-shadow: $boxShadow;
+        padding: 10px;
+        display: block;
+      }
     }
 
   }
@@ -1092,7 +1201,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
       margin: 9px 0;
       font-weight: 500;
       @include s() {
-        margin: 15px 0;
+        margin: 20px 0;
       }
     }
     a {
@@ -1108,6 +1217,10 @@ form#AddToCartForm, form#CartPage, form#contact_form {
     margin-bottom: 5px;
   }
   ul.inline {
+    margin: 10px 0 15px;
+    .icon {
+      font-size: 1.4em;
+    }
     @include s() {
       width: 100%;
     }
@@ -1251,6 +1364,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
     border-color: lighten($colorBackground, 30%);
     font-size: 1rem;
     color: $colorText;
+    @include prefixer(appearance, textfield, moz);
     &[type=number]::-webkit-inner-spin-button, [type=number]::-webkit-outer-spin-button {
       -webkit-appearance: none;
       margin: 0;
@@ -1271,6 +1385,77 @@ form#AddToCartForm, form#CartPage, form#contact_form {
     .product_title {
       display: block;
       margin-bottom: $gutter/2;
+    }
+  }
+}
+
+.cart-page {
+  padding: 40px 0;
+  font-family: 'Poppins';
+  @include s() {
+    padding: 40px 20px;
+  }
+  .image-container,
+  .product_title,
+  .variant_title {
+    @include s() {
+      text-align: center;
+    }
+  }
+  .title {
+    font-weight: 600;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  #CartHeader {
+    box-shadow: $boxShadow;
+    background: #f1f1f1;
+    padding: 20px;
+    text-align: center;
+    @include s() {
+      display: none;
+    }
+  }
+  a {
+    color: #000;
+    text-decoration: none;
+  }
+  .price {
+    text-align: center;
+    padding-top: 30px;
+  }
+
+  .quantity-adjust {
+    text-align: center;
+    padding-left: 5px;
+    @include s() {
+      padding-right: 0;
+      padding-bottom: 35px;
+    }
+  }
+
+  .cart-table {
+    box-shadow: $boxShadow;
+    padding: 20px 20px 0px;
+    margin-bottom: 15px;
+  }
+
+  .cart-total {
+    box-shadow: $boxShadow;
+    padding: 20px 0px;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  .actions {
+    .hide-action {
+      display: none;
+    }
+    a.btn {
+      display: block;
+      width: 90%;
+      margin: 5px auto;
     }
   }
 }
@@ -1409,11 +1594,71 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 // Popup Cart
 
 #PopupCart {
-  .popup-content {
-    width: 400px;
+  font-family: 'Poppins';
+
+  a {
+    color: #2d2d2d;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    &.btn {
+      color: #fff;
+      display: block;
+      font-size: 14px;
+      width: 70%;
+      margin-top: 15px;
+      margin-bottom: 15px;
+      @include s() {
+        width: 200px;
+      }
+      &:hover {
+        color: #000;
+      }
+    }
   }
+
+  .quantity-adjust {
+    .quantity {
+      height: 41px;
+      line-height: 27px;
+    }
+  }
+
+  .checkout-btn {
+    a.btn {
+      margin: auto;
+      margin-top: 25px;
+    }
+  }
+
+  .items {
+    padding: 20px 40px;
+    @include s() {
+      padding: 20px;
+    }
+  }
+
+  .at-checkout,
+  .cart-item {
+    padding: 0px 40px;
+  }
+
+  .popup-content {
+    width: 500px;
+    padding: 0;
+  }
+
+  .title {
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    padding: 20px 0;
+    background: #f1f1f1;
+  }
+
   p {
     margin-bottom: $gutter/3;
+    white-space: normal;
   }
   .cart-item {
     margin-bottom: $gutter/3;
@@ -1428,6 +1673,85 @@ form#AddToCartForm, form#CartPage, form#contact_form {
   }
 }
 
+// Address Edit Popup
+.edit_address,
+.new_address,
+.delete_address {
+  .popup-content {
+    padding: 0;
+    h4 {
+      font-size: 18px;
+      font-weight: 600;
+      text-align: center;
+      padding: 20px 0;
+      background: #f1f1f1;
+      margin-bottom: 15px;    
+    }
+    form {
+      display: block;
+      width: 90%;
+      margin: 0 auto;
+      box-shadow: $boxShadow;
+      padding: 10px;
+      label {
+        padding: 10px 0;
+      }
+      input,
+      select {
+        height: 49px;
+        line-height: normal;
+        border: none;
+        box-shadow: $boxShadow;
+        background: #fff;
+        color: #00499E;
+        &:focus {
+          border: 1px solid #00499E;
+        }
+      }
+
+      input[type="checkbox"] {
+        box-shadow: none;
+      }
+
+      .actions {
+        display: block;
+        a.btn {
+          display: inline-block;
+        }
+        @include s() {
+          a.btn {
+            display: block;
+            width: 90%;
+            margin: 0 auto;
+            margin-bottom: 10px;
+            &.cancel {
+              float: none;
+            }
+          }
+        }
+        .action-hide {
+          display: none;
+        }
+        .cancel {
+          float: right;
+        }
+      }
+    }
+    .delete-info {
+      padding: 20px;
+      .actions {
+        .cancel {
+          float: right;
+          @include s() {
+            float: none;
+            margin-top: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
 
 .social-sharing {
   margin-bottom: $gutter;
@@ -1436,13 +1760,14 @@ form#AddToCartForm, form#CartPage, form#contact_form {
   padding: 0;
   height: 20px;
   line-height: ($gutter/1.5 - $borderWeight*2);
-  font-size: 1rem;
+  font-size: 1.5em;
   background-color: rgba(#fff,0);
   border: none;
-  margin-right: 15px;
+  margin-right: 30px;
   color: #2d2d2d;
   @include s() {
-    width: 10%;
+    width: 15%;
+    margin: 20px;
   }
   &.facebook {
     color: #3b5998;
@@ -1512,19 +1837,8 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 /* Product ===================================================================*/
 .product-page {
   font-family: 'Poppins';
-  .product-crumbs {
-    color: #979797;
-    font-size: 14px;
-    font-family: 'Poppins';
-    font-weight: 600;
-    margin: 5px 0;
-    @include s() {
-      display: none;
-    }
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+  padding-bottom: 40px;
+  .crumbs {
     &.crumb-left {
       text-align: left;
     }
@@ -1542,10 +1856,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
     @include s() {
       display: block;
     }
-    .share-title {
-      display: block;
-      text-align: center;
-    }
+    .share-title,
     .social-sharing {
       display: block;
       text-align: center;
@@ -1557,17 +1868,19 @@ form#AddToCartForm, form#CartPage, form#contact_form {
       padding: 0px 20px;  
     }
   }
+  .yotpo {
+    margin-bottom: 2em;
+  }
   .thumb-img {
     border: 1px solid #ececec;
-    margin-right: 5px;
+    width: 65%;
+    margin: 5px auto;
   }
   .share-title {
     margin-top: 40px;
     margin-bottom: 15px;
     color: #2d2d2d;
-    font-weight: 600;
-    font-size: 16px;
-    font-family: 'Poppins';
+    @include poppins(16px, 600, normal);
     @include s() {
       display: none;
     }
@@ -1580,18 +1893,14 @@ form#AddToCartForm, form#CartPage, form#contact_form {
   }
 
   .product-title {
-    font-family: 'Poppins';
-    font-weight: bold;
-    font-size: 36px;
+    @include poppins(36px, bold, normal);
     @include s() {
       font-size: 24px;
     }
   }
 
   #ProductPrice {
-    font-size: 24px;
-    font-weight: 600;
-    font-family: 'Poppins';
+    @include poppins(24px, 600, normal);
     margin: 20px 0;
     @include s() {
       margin-top: 5px;
@@ -1601,8 +1910,7 @@ form#AddToCartForm, form#CartPage, form#contact_form {
   .option-selector {
     label {
       width: 100%;
-      font-weight: 500;
-      font-size: 16px;
+      @include poppins(16px, 500, normal);
       @include s() {
         font-size: 18px;
       }
@@ -1611,11 +1919,14 @@ form#AddToCartForm, form#CartPage, form#contact_form {
       width: 350px;
       margin-bottom: 20px;
       position: relative;
+      @include m() {
+        width: 100%;
+      }
       @include s() {
         width: 100%;
         text-align: center;
       }
-      &:after {
+      &:before {
         content: '\f078';
         font-family: 'FontAwesome';
         position: absolute;
@@ -1624,6 +1935,11 @@ form#AddToCartForm, form#CartPage, form#contact_form {
         right: 20px;
         color: #000;
         font-size: 20px;
+        cursor: pointer;
+        pointer-events: none;
+        @include m() {
+          right: 4%;
+        }
         @include s() {
           right: 30px;
         }
@@ -1643,10 +1959,15 @@ form#AddToCartForm, form#CartPage, form#contact_form {
       box-shadow: $boxShadow;
       line-height: normal;
       color: #000;
-      font-family: 'Poppins';
-      font-size: 18px;
-      font-weight: 500;
       position: relative;
+      &::-ms-expand {
+        display: none;
+      }
+      @include poppins(18px, 500, normal);
+      position: relative;
+      @include m() {
+        padding: 12px 24px 12px 15px;
+      }
       @include s() {
         max-width: 100%;
       }
@@ -1661,11 +1982,18 @@ form#AddToCartForm, form#CartPage, form#contact_form {
   }
   .submit-area {
     margin: 40px 0;
-    @include s() {
-      margin: 20px 0;
-      a.btn.primary-btn {
-        display: block;
+    a.btn,
+    button.btn {
+      display: block;
+      width: 63.5%;
+      padding: 18px;
+      @include m() {
+        width: 49.5%;
+      }
+      @include s() {
+        margin: 20px 0;
         font-size: 24px;
+        width: 100%;
       }
     }
   }
@@ -1677,26 +2005,42 @@ form#AddToCartForm, form#CartPage, form#contact_form {
       margin-top: 50px;
     }
     .title {
-      font-family: 'Poppins';
-      font-weight: 600;
-      font-size: 16px;
+      @include poppins(16px, 600, normal);
       border-bottom: 1px solid #dedede;
       padding: 10px 40px;
     }
     p {
-      font-family: 'Roboto';
-      line-height: 18px;
-      font-size: 14px;
-      padding: 20px 40px;
+      @include roboto(14px, 500, normal);
+      line-height: 25px;
+      padding: 20px 40px 30px;
+      text-align: justify;
+    }
+  }
+
+  .quick-add {
+    #OnSale {
+      @include poppins(1.125rem, 600, normal);
+      color: #fff;
+      margin-bottom: 0;
+    }
+    a.btn {
+      width: 100%;
     }
   }
 
   .product-calculator {
     box-shadow: $boxShadow;
+    margin-top: 4em;
+    margin-right: 1em;
+    @include m() {
+      margin-top: 6.6em;
+      margin-right: 0;
+    }
+    @include s() {
+      margin: 0;
+    }
     .title, .calculator {
-      font-family: 'Poppins';
-      font-weight: 600;
-      font-size: 16px;
+      @include poppins(16px, 600, normal);
       border-bottom: 1px solid #dedede;
       padding: 10px 40px;
     }
@@ -1722,11 +2066,8 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 // Header navigation
 .header-navigation {
   a {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 600;
+    @include poppins(18px, 600, normal);
     line-height: normal;
-    font-size: 18px;
     text-decoration: none;
     color: $colorHeaderText;
     &:hover {
@@ -1738,16 +2079,17 @@ form#AddToCartForm, form#CartPage, form#contact_form {
 }
 
 // Button Call
-a.btn {
-  padding: 12px 30px;
+a.btn,
+button.btn {
+  @include poppins(18px, 500, normal);
+  padding: 12px 20px;
   border-radius: 11px;
-  font-size: 18px;
   box-shadow: $boxShadow;
   text-align: center;
   vertical-align: middle;
   text-decoration: none;
   @include s() {
-    font-size: 14px;
+    @include poppins(14px, normal, normal);
   }
 
   // Primary
@@ -1790,19 +2132,17 @@ a.btn {
     border: 1px solid $colorBtnPrimary;
     color: $colorBtnPrimary;
     border-radius: 0;
-    font-family: Poppins;
-    font-weight: 600;
-    font-size: 20px;
+    @include poppins(20px, 600, normal);
+    padding: 12px 20px;
   }
 
   &.transparent-secondary-btn {
     background-color: rgba(#000, 0);
     border: 3px solid $colorBtnSecondary;
     color: $colorBtnSecondary;
+    padding: 12px 20px;
     border-radius: 0;
-    font-family: Poppins;
-    font-weight: 600;
-    font-size: 20px;
+    @include poppins(20px, 600, normal);
   }
 }
 
@@ -1810,25 +2150,23 @@ a.btn {
 	.title-block {
 		padding-top: 80px;
 		padding-bottom: 50px;
+		@include s() {
+			padding-top: 80px;
+			padding-bottom: 30px;
+		}
 		h1 {
-		    font-weight: bold;
-		    color: #fff;
-		    text-align: center;
-		    font-size: 48px;
-		    margin-top: 100px;
-		    text-shadow: $boxShadow;
+			@include poppins(48px, bold, normal);
+	    color: #fff;
+	    text-align: center;
+	    margin-top: 100px;
+	    text-shadow: $boxShadow;
+	    @include s() {
+	    	font-size: 20px;
+	    	margin-top: 10px;
+	    }
 		}
 	}
 	.crumbs {
-		margin: 10px 0;
-		font-family: 'Poppins';
-		font-weight: 600;
-		font-size: 14px;
-		color: #979797;
-		a {
-			color: #979797;
-			text-decoration: none;
-		}
 		&.crumb-left {
 			text-align: left;
 		}
@@ -1836,24 +2174,1138 @@ a.btn {
 			text-align: right;
 		}
 	}
+	.sort-wrapper {
+		margin-bottom: 10px;
+		&.sort-left {
+			text-align: left;
+		}
+		&.sort-right {
+			text-align: right;
+		}
+		@include s() {
+			text-align: center!important;
+			width: 80%;
+			margin: 50px auto 5px auto;
+		}
+		label {
+			@include poppins(18px, 600, normal);
+			margin-right: 10px;
+			@include s() {
+				display: inline-block;
+				width: 29%;
+				font-size: 18px;
+			}
+		}
+		select {
+			@include poppins(15px, 600, normal);
+			height: 44px;
+			line-height: normal;
+			padding: 5px 40px 5px 10px;
+			width: 200px;
+			background: #fff;
+			border: 1px solid #c0c0c0;
+			color: #000;
+			&::-ms-expand {
+				display: none;
+			}
+			@include s() {
+				box-shadow: $boxShadow;
+			}
+		}
+		.select-wrapper {
+			position: relative;
+			&:after {
+				position: absolute;
+				font-family: 'FontAwesome';
+				font-size: 20px;
+				content: '\f078';
+				z-index: 5;
+		        top: 12px;
+		        right: 10px;
+		        @include s() {
+		        	right: 20px;
+		        }
+			}
+			@include s() {
+				width: 65%;
+				display: inline-block;
+			}
+		}
+	}
+	.collections-container {
+		font-family: 'Poppins';
+		padding: 40px 0;
+		@include s() {
+			padding: 40px 20px;
+		}
+
+		.product-block {
+			padding: 0 2%;
+		}
+
+		.product {
+			box-shadow: $boxShadow;
+			height: 540px;
+			position: relative;
+			@include m() {
+				margin-bottom: 10px;
+			}
+			@include s() {
+				height: 500px;
+				margin-bottom: 10px;
+
+			}
+			&.column {
+				padding: 0;
+			}
+			.yotpo {
+				position: absolute;
+				bottom: 16%;
+				left: 0;
+				right: 0;
+				padding: 0 20px;
+				@include s() {
+					bottom: 18%;
+				}
+			}
+			.product-image {
+				background: #f9f9f9;
+				padding: 10px;
+				margin-bottom: 10px;
+				position: relative;
+				height: 300px;
+				text-align: center;
+				@include s() {
+					padding: 0;
+					height: 270px;
+				}
+
+				img {
+					max-width: 266px;
+					max-height: 266px;
+					padding-top: 55px;
+				}
+
+				.product-feature {
+					background: transparent;
+					position: absolute;
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: 0;
+					z-index: 5;
+					&:hover {
+						background: rgba(37, 61, 131, 0.5);
+						transition: 0.3s;
+						.action {
+							display: block;
+						}
+					}
+					p {
+						background: #253D83;
+						text-align: center;
+						padding: 10px;
+						color: #fff;
+						font-weight: 600;
+					}
+
+					.action {
+						text-align: center;
+						display: none;
+						a.btn {
+							display: block;
+							width: 60%;
+							margin: 0 auto;
+							margin-top: 60%;
+							&:hover {
+								background: #fff;
+								color: #253D83;
+								transition: 0.3s;
+							}
+						}
+					}
+				}
+			}
+
+			.product-info {
+				padding: 20px;
+				@include s() {
+					padding: 5px 20px;
+				}
+				a {
+					color: #000;
+					text-decoration: none;
+					font-size: 18px;
+					font-weight: bold;
+					@include s() {
+						font-size: 14px;
+					}
+				}
+				p {
+					@include s() {
+						font-size: 14px;
+						margin-top: 10px;
+					}
+				}
+				.starting-from {
+					color: #979797;
+				}
+			}
+			.action {
+				padding: 20px;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				a.btn {
+					display: block;
+				}
+			}
+		}
+
+		.collection-group {
+			p {
+				display: inline-block;
+				margin-right: 10px;
+				margin-left: 30px;
+				@include s() {
+					font-size: 18px;
+					margin: 0;
+					margin-bottom: 30px;
+					text-align: center;
+					display: block;
+				}
+			}
+			a {
+				display: inline-block;
+
+			}
+		}
+	}
+
+	.pagination {
+		color: #979797;
+	}
+}
+.blog-page {
+	@include m() {
+		padding: 0 1%;
+	}
+	@include s() {
+		padding: 0 4%;
+	}
+
+	h1, h4 {
+		@include poppins(24px, 600, normal);
+		text-align: center;
+		margin: 20px 0;
+		a {
+			text-decoration: none;
+			color: #2d2d2d;
+		}
+	}
+
+	h1 {
+		margin-bottom: 60px;
+		@include s() {
+			margin-bottom: 30px;
+		}
+	}
+
+	.latest-article {
+		box-shadow: $boxShadow;
+		padding: 0;
+		margin-bottom: 60px;
+
+		.featured-img {
+			position: relative;
+			.date-block {
+				@include poppins(18px, 600, normal);
+				position: absolute;
+				left: 5px;
+				top: 0;
+				background: #fff;
+				display: block;
+				width: 120px;
+				text-align: center;
+				padding: 15px 0;
+			}
+		}
+
+		.featured-body {
+			padding: 0px 4% 0px;
+			text-align: justify;
+			position: relative;
+			height: 350px;
+			@include m() {
+				height: auto;
+			}
+			@include s() {
+				padding: 0px 20px 20px;
+				height: auto;
+			}
+			p {
+				font-size: 18px;
+				line-height: 27px;
+				@include s() {
+					display: none;
+				}
+			}
+			.action {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				padding: 10px;
+				@include m() {
+					position: relative;
+					padding: 0 0 10px;
+				}
+				@include s() {
+					position: relative;
+					padding: 0 0 10px;
+				}
+			}
+			a.btn {
+		    display: block;
+		    width: 30%;
+		    margin: auto;
+		    margin-top: 20px;
+		    @include m() {
+		    	width: 45%;
+		    }
+		    @include s() {
+		    	width: 70%;
+		    }
+			}
+		}
+
+	}
+
+	.blog-block {
+		box-shadow: $boxShadow;
+		background: #fff;
+    width: 350px;
+    height: 580px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    margin-bottom: 10px;
+    @include m() {
+    	margin-bottom: 35px;
+    }
+    @include s() {
+      	width: 100%;
+      	height: auto;
+    }
+
+    .date-block {
+			position: absolute;
+			top: 0;
+			right: 0px;
+			padding: 10px 20px;
+			background: #fff;
+			z-index: 9;
+    }
+
+    .blog-image {
+		width: 100%;
+		height: 340px;
+
+			img {
+				width: 100%;
+				height: 100%;
+			}
+    }
+
+    .blog-description {
+    	padding: 0 30px;
+    	margin-top: 20px;
+
+    	h4 {
+    		@include poppins(18px, 500, normal);
+    		margin-bottom: 20px;
+    	}
+    }
+
+    .blog-btn {
+    	position: absolute;
+    	left: 0;
+    	right: 0;
+    	bottom: 0;
+    	@include s() {
+    		position: relative;
+    		display: block;
+    		padding: 0 0 10px;
+    	}
+    	a {
+    		display: block;
+    		margin: 0 auto;
+    		margin-bottom: 20px;
+    		width: 50%;
+    	}
+    }
+	}
+
+	.column:nth-child(2n+1).m6 {
+		clear: none;
+	}
+}
+.article-page {
+	text-align: center;
+	position: relative;
+	min-height: 700px;
+	@include s() {
+		padding: 0 20px;
+	}
+
+	&.howto {
+		background: #f9f9f9;
+	}
+
+	.support-sidebar {
+		width: 350px;
+		background: #fff;
+		display: block;
+		position: absolute;
+		top: 40px;
+		left: 0;
+		bottom: 20%;
+		box-shadow: $boxShadow;
+		overflow-x: auto;
+		@include m() {
+			display: none;
+		}
+		@include s() {
+			display: none;
+		}
+		.title-bar {
+			@include poppins(14px, 500, normal);
+			background: #00499E;
+			color: #fff;
+			padding: 15px 5px 15px 60px;
+			text-align: left;
+			cursor: pointer;
+			i {
+				float: right;
+				padding: 6px 18px;
+			}
+		}
+
+		.article-title {
+			padding: 5px 5px 5px 100px;
+			text-align: left;
+			margin-bottom: 0.8rem;
+			a {
+				font-size: 14px;
+				line-height: 21px;
+				color: #000;
+				text-decoration: none;
+			}
+		}
+
+		.article-pane {
+			display: none;
+		}
+
+		.section-bar {
+			color: #000;
+			font-size: 14px;
+			text-align: left;
+			background: #f4f4f4;
+			font-weight: normal;
+			margin: 10px 0 10px 60px;
+			padding: 15px 23px 15px 40px;
+			position: relative;
+			cursor: pointer;
+			i {
+				float: right;
+				padding: 6px 0px;
+			}
+		}
+
+		.section-pane {
+			display: none;
+		}
+	}
+
+	.search-bar {
+		a {
+			color: #000;
+			font-family: 'Poppins';
+			font-weight: 500;
+			font-size: 18px;
+			text-align: center;
+			text-decoration: none;
+			i {
+				font-weight: bold;
+				font-size: 20px;
+				padding: 5px;
+			}
+		}
+
+		.back {
+			display: inline-block;
+			width: 35%;
+		}
+
+		form {
+			display: inline-block;
+			width: 55%;
+			position: relative;
+
+			input[type="text"] {
+				height: 27px;
+				border-radius: 25px;
+				margin-left: 7px;
+				padding: 2px 30px 2px 10px;
+				font-size: 10px;
+			}
+
+			.icon {
+				position: absolute;
+				top: 5px;
+				right: 5px;
+			}
+		}
+	}
+
+	.article {
+		max-width: 715px;
+		font-family: 'Poppins';
+		margin: 0 auto;
+		@include s() {
+			overflow: auto;
+		}
+
+		a {
+			color: #00499E;
+		}
+
+		&.howto-article {
+			width: 100%;
+			max-width: 100%;
+			.howto-feature {
+				margin-bottom: 2em;
+			}
+			h4.share {
+				margin-top: 4em;
+			}
+			.social-sharing {
+				margin-top: 20px;
+				margin-bottom: 4em;
+			}
+			.block {
+				margin: 2em 0;
+			}
+		}
+
+		.title {
+			@include poppins(24px, 600, normal);
+			@include s() {
+				font-size: 18px;
+			}
+		}
+
+		.date {
+			color: #979797;
+			font-size: 14px;
+			font-weight: 600;
+		}
+
+		.rte {
+			font-family: 'Roboto', sans-serif;
+			padding: 20px 35px;
+			text-align: justify;
+			margin-bottom: 5em;
+			@include s() {
+				padding: 20px 10px;
+				p {
+					font-size: 18px;
+				}
+			}
+		}
+
+		.share {
+			color: #979797;
+		}
+
+		.tags {
+			font-size: 18px;
+			a {
+				color: #000;
+				text-decoration: none;
+			}
+		}
+
+		.block {
+			box-shadow: $boxShadow;
+			padding: 0px;
+			background: #fff;
+			text-align: justify;
+			margin-bottom: 0 20px;
+			a {
+				color: rgb(34,46,106);
+				cursor: pointer;
+			}
+			p {
+				padding: 20px;
+				margin-bottom: 0px;
+			}
+			img {
+				width: 100%;
+			}
+		}
+
+		#prevArticle,
+		#nextArticle {
+			a {
+				color: #979797;
+				text-decoration: none;
+				display: inline-block;
+				border: 1px solid #979797;
+				position: relative;
+				text-align: center;
+				@include s() {
+					font-size: 13px;
+					width: 100%;
+				}
+			}
+		}
+
+		#prevArticle {
+			a {
+				padding: 15px 10px 15px 40px;
+				&:after {
+					content: '\f053';
+					position: absolute;
+					font-family: 'FontAwesome';
+					top: 16px;
+					left: 12px;
+				}
+			}
+		}
+
+		#nextArticle {
+			a {
+				padding: 15px 40px 15px 10px;
+				&:after {
+					content: '\f054';
+					position: absolute;
+					font-family: 'FontAwesome';
+					top: 16px;
+					right: 12px;
+				}
+			}
+		}
+
+		.article-paginate {
+			margin: 50px 0;
+		}
+	}
+
+	.support-mobile {
+
+		.feature-product {
+			.product-block {
+				display: block;
+				float: none;
+				margin: auto;
+				.product {
+					display: inline-block;
+					box-shadow: $boxShadow;
+					padding: 30px;
+					margin: 2em 0;
+				}
+			}
+			.product-info {
+				a {
+					color: #000;
+					text-decoration: none;
+					&.btn {
+						color: #fff;
+					}
+				}
+			}
+		}
+
+		.mb-guide {
+			display: none;
+			@include m() {
+				display: block;
+			}
+			@include s() {
+				display: block;
+			}
+			.support-sidebar {
+				position: relative;
+				display: block;
+				width: 100%;
+				margin-bottom: 50px;
+			}
+		}
+	}
+}
+.contact-us {
+	text-align: center;
+	background: rgba(#fff, 0.9);
+	position: relative;
+	z-index: 1;
+	padding: 20px 0 40px;
+	@include s() {
+		padding: 20px 4% 40px;
+	}
+	&:after {
+		position: absolute;
+	    top: 0;
+	    height: 100%;
+	    left: 0;
+	    width: 100%;
+	    content: '';
+		z-index: -1;
+		opacity: 0.1;
+	}
+
+	.title {
+		@include poppins(24px, 600, normal);
+		color: #253d83;
+		@include s() {
+			font-size: 18px;
+			margin: 20px 0;
+		}
+	}
+
+	.rte {
+		@include poppins(18px, 500, normal);
+		text-align: center;
+		color: #253d83;
+		@include s() {
+			@include poppins(14px, 500, normal);
+			line-height: 30px;
+		}
+	}
+
+	.contact-form {
+		label {
+			@include poppins(18px, 500, normal);
+	    text-align: left;
+	    color: #2f3b70;
+	    padding-left: 30px;
+	    margin: 40px 0 10px;
+	    line-height: normal;
+	    @include s() {
+	    	padding-left: 5px;
+	    	margin-top: 30px;
+	    	margin-bottom: 15px;
+	    }
+		}
+
+		input {
+			width: 95%;
+			color: #000;
+			background: #fff;
+			height: 48px;
+			box-shadow: $boxShadow;
+			border: none;
+			border-radius: 5px;
+			line-height: normal;
+			position: relative;
+			z-index: 1;
+			&:focus {
+				border: 1px solid #00499E;
+			}
+		}
+
+		textarea {
+			width: 98%;
+			height: 240px;
+			overflow: auto;
+		    background: #fff;
+		    border: none;
+		    color: #000;
+		    position: relative;
+		    z-index: 1;
+		    line-height: normal;
+		    padding: 15px;
+		    resize: none;
+		    box-shadow: $boxShadow;
+		    &:focus {
+				border: 1px solid #00499E;
+			}
+		}
+
+		.submit {
+			display: inline-block;
+			width: 100%;
+			margin: 32px 0;
+
+			a.btn {
+				@include poppins(18px, 600, normal);
+				display: inline-block;
+				float: right;
+				margin-right: 12px;
+				width: 10%;
+				@include m() {
+					width: 20%;
+				}
+				@include s() {
+					width: 95%;
+					margin: 0;
+					float: none;
+				}
+			}
+
+			input[type="submit"] {
+				display: none;
+			}
+		}
+	}
+}
+.crumbs {
+	margin: 20px 0;
+	text-align: left;
+	color: #979797;
+	@include poppins(14px, 600, normal);
+	@include m() {
+		font-size: 10px;
+	}
+	@include s() {
+		display: none;
+	}
+	a {
+		color: #979797;
+		text-decoration: none;
+	}
+}
+.search-page {
+	.results {
+		text-align: center;
+		margin-bottom: 30px;
+		h1 {
+			font-size: 24px;
+			color: #00499E;
+		}
+
+		form {
+			display: block;
+			width: 40%;
+			margin: auto;
+			position: relative;
+			input {
+				width: 100%;
+				height: 50px;
+				border-radius: 25px;
+				font-size: 2em;
+				padding: 5px 50px 5px 20px;
+			}
+
+			.icon {
+				position: absolute;
+				top: 10px;
+				right: 20px;
+				font-size: 1.7em;
+			}
+		}
+	}
+
+	.block {
+		width: 85%;
+		margin: auto;
+		box-shadow: $boxShadow;
+		padding: 20px;
+		font-family: 'Poppins';
+		height: 420px;
+		// B-)
+		margin-bottom: 25px;
+		overflow-x: auto;
+		@include m() {
+			width: 95%;
+			height: 350px;
+		}
+		@include s() {
+			height: 280px;
+		}
+
+		.title {
+			font-weight: bold;
+	    font-size: 18px;
+	    @include s() {
+	      font-size: 14px;
+    	}
+    	a {
+    		color: #2d2d2d;
+    		text-decoration: none;
+    		&:hover {
+    			text-decoration: underline;
+    		}
+    	}
+		}
+
+		.rte {
+			p {
+				@include s() {
+					font-size: 12px;
+				}
+			}
+		}
+	}
+}
+.pagination {
+		margin: 0 0 20px;
+		text-align: center;
+		.page {
+			color: #979797;
+			border: none;
+			margin: 0 3%;
+			a {
+				border: none;
+				color: #979797;
+				&:hover {
+					background: none;
+					color: #000;
+					transition: 0.3s;
+				}
+			}
+			&.current {
+				background: none;
+				color: #000;
+				text-decoration: underline;
+				border: none;
+				&:hover {
+					background: none;
+				}
+			}
+		}
+
+		.deco {
+			color: #979797;
+		}
+
+		.next,
+		.prev {
+			a {
+				border: none;
+				color: #979797;
+				&:hover {
+					background: none;
+					color: #000;
+					transition: 0.3s;
+				}
+			}
+		}
+
+	}
+.addresses {
+	font-family: 'Poppins';
+	.title {
+		text-align: center;
+		font-size: 24px;
+		font-weight: 600;
+		margin-bottom: 35px;
+	}
+
+	.address-block {
+		box-shadow: $boxShadow;
+		display: block;
+		width: 80%;
+		margin: 0 auto;
+		padding: 20px;
+		margin-bottom: 20px;
+		@include s() {
+			width: 90%;
+		}
+
+		.address {
+			display: block;
+			width: 100%;
+			box-shadow: $boxShadow;
+			margin-bottom: 30px;
+		}
+
+		.highlight {
+			display: block;
+			padding: 20px 0;
+			text-align: center;
+			background: #253d83;
+			color: #fff;
+		}
+
+		.address-info {
+			padding: 20px;
+		}
+
+		.actions {
+			@include s() {
+				padding-bottom: 20px;
+			}
+			a.btn {
+				display: inline-block;
+				@include s() {
+					display: block;
+					width: 90%;
+					margin: auto;
+				}
+
+				&.left {
+					margin-left: 15px;
+					margin-bottom: 15px;
+					@include s() {
+						margin: 0 auto;
+						margin-bottom: 10px;
+					}
+				}
+
+				&.right {
+					float: right;
+					margin-right: 15px;
+					margin-bottom: 15px;
+					@include s() {
+						float: none;
+						margin: 0 auto;
+					}
+				}
+			}
+		}
+	}
+	.new-address {
+		margin: 10px 0;
+		text-align: center;
+	}
+
+	.account-sidebar {
+		box-shadow: $boxShadow;
+		display: block;
+		width: 90%;
+		margin: 0 auto;
+
+		.title {
+			text-align: center;
+			font-size: 24px;
+			font-weight: 600;
+			margin-bottom: 15px;
+			background: #f1f1f1;
+			padding: 20px 0;
+		}
+
+		.account-sb-body {
+			padding: 20px;
+			a {
+				color: #000;
+			}
+			p {
+				margin-bottom: 10px;
+			}
+		}
+	}
+}
+.past-orders {
+	font-family: 'Poppins', sans-serif;
+	@include s() {
+		padding: 0 4%;
+	}
+
+	.order-table {
+		max-width: 1000px;
+		margin: 2em auto 2em;
+		box-shadow: $boxShadow;
+		.title {
+			padding: 20px;
+			background: #00499E;
+			text-align: center;
+			color: #fff;
+			@include poppins(24px, 600, normal);
+			margin-bottom: 15px;
+		}
+		.order-info {
+			padding: 10px;
+			text-align: center;
+			border-bottom: 1px solid #979797;
+			.lead {
+				@include poppins(18px, 600, normal);
+			}
+			.info {
+				@include poppins(14px, 500, normal);
+			}
+			a.btn {
+				display: inline-block;
+			}
+		}
+		.ordered-products {
+			padding: 10px;
+			.product-block {
+				box-shadow: $boxShadow;
+				.product-info {
+					padding: 10px;
+					.title {
+						@include poppins(18px, 600, normal);
+						background: #fff;
+						padding: 0;
+						a {
+							color: #000;
+							text-decoration: none;
+						}
+					}
+					p {
+						margin: 5px 0;
+						text-align: center;
+						@include poppins(14px, 500, normal);
+					}
+				}
+			}
+		}
+	}
+	.price {
+		max-width: 500px;
+		margin: 10px auto;
+		box-shadow: $boxShadow;
+		padding: 20px;
+		p {
+			@include poppins(18px, 600, normal);
+			margin-bottom: 10px;
+		}
+	}
+	.details {
+		margin: 2em 0;
+		.detail-block {
+			margin: 0 10px;
+			box-shadow: $boxShadow;
+			.title {
+				padding: 20px;
+				background: #00499E;
+				color: #fff;
+				text-align: center;
+				@include poppins(18px, 600, normal);
+			}
+			p, 
+			a {
+				@include poppins(16px, 500, normal);
+				padding: 10px;
+				margin: 5px 0;
+			}
+			a {
+				color: #000;
+			}
+		}
+	}
 }
 
 /* Sections ===================================================================*/
 .hero-slider {
-  height: 500px;
+  height: 715px;
   margin-top: 37px;
-  margin-bottom: 60px;
+  margin-bottom: 20px;
+  padding-top: 5rem;
+  @include m() {
+    margin-bottom: 20px;
+    height: auto;
+  }
   @include s() {
     margin-top: 0px;
-    padding-top: 110px;
-    padding-bottom: 40px;
+    padding: 110px 4% 40px;
     margin-bottom: 0px;
     height: auto;
     background-size: auto!important;
     background-position: 0% 0%!important;
-  }
-  @include m() {
-    margin-bottom: 20px;
   }
 
   .slider,
@@ -1867,14 +3319,19 @@ a.btn {
   }
 
   .hero-feature {
-    font-size: 36px;
+    @include poppins(36px, bold, normal);
     text-shadow: $boxShadow;
-    font-family: 'Poppins';
-    font-weight: bold;
     color: #fff;
     margin-bottom: 22px;
     @include s() {
       font-size: 20px;
+    }
+  }
+
+  .hero-btn {
+    a.btn {
+      display: inline-block;
+
     }
   }
 
@@ -1898,11 +3355,11 @@ a.btn {
     font-size: 3em;
     z-index: 9;
     @include m() {
-      top: 220px
+      top: 220px;
     }
     @include s() {
       top: 40px;
-      left: 13px;
+      left: 0;
     }
   }
 
@@ -1918,7 +3375,7 @@ a.btn {
     }
     @include s() {
       top: 40px;
-      right: 13px;
+      right: 0;
       color: #fff;
     }
   }
@@ -1942,9 +3399,7 @@ a.btn {
 
   .mb-heading {
     margin-bottom: 20px;
-    font-size: 18px;
-    font-family: 'Poppins';
-    font-weight: 500;
+    @include poppins(18px, 500, normal);
   }
 
   .featured-tile {
@@ -1978,9 +3433,8 @@ a.btn {
     }
 
     .heading {
-      font-size: 48px;
+      @include poppins(48px, 600, normal);
       color: #fff;
-      font-weight: 600;
       margin-bottom: 38px;
       text-shadow: $boxShadow;
       @include s() {
@@ -2029,10 +3483,8 @@ a.btn {
       }
 
       .heading {
-        font-family: 'Poppins';
+        @include poppins(20px, 600, normal);
         text-align: right;
-        font-weight: 600;
-        font-size: 20px;
         color: #fff;
         padding-right: 28px;
         margin-top: 20px;
@@ -2085,7 +3537,7 @@ a.btn {
     box-shadow: $boxShadow;
     background: #fff;
     width: 350px;
-    height: 540px;
+    height: 560px;
     margin: 0 auto;
     text-align: center;
     position: relative;
@@ -2124,6 +3576,25 @@ a.btn {
       }
     }
 
+    .action {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px;
+      a.btn {
+        display: block;
+        width: 50%;
+        margin: auto;
+        @include m() {
+          width: 100%;
+        }
+        @include s() {
+          width: 100%;
+        }
+      }
+    }
+
     &.block-1 {
       margin-left: 0;
       margin-right: auto;
@@ -2141,25 +3612,24 @@ a.btn {
     }
   }
 
-  .blog-prev {
+  .blog-prev,
+  .blog-next {
     position: absolute;
-    left: -58px;
     top: 270px;
-    color: #000;
+    color: #979797;
     font-size: 3em;
     z-index: 99;
+  }
+
+  .blog-prev {
+    left: -58px;
     @include s() {
       left: 12px;
     }
   }
 
   .blog-next {
-    position: absolute;
     right: -58px;
-    top: 270px;
-    color: #000;
-    font-size: 3em;
-    z-index: 99;
     @include s() {
       right: 12px;
     }
@@ -2175,9 +3645,7 @@ a.btn {
   }
 
   .heading {
-    font-family: 'Poppins';
-    font-weight: 500;
-    font-size: 24px;
+    @include poppins(24px, 500, normal);
     text-align: center;
     margin-bottom: 80px;
     @include s() {
@@ -2197,9 +3665,7 @@ a.btn {
       box-shadow: $boxShadow;
     }
     .lead {
-      font-size: 24px;
-      font-weight: 500;
-      font-family: 'Poppins';
+      @include poppins(24px, 500, normal);
       display: inline-block;
       margin: 0;
       margin-left: 30px;
@@ -2218,10 +3684,6 @@ a.btn {
         font-size: 20px;
         margin: 3px 0;
       }
-
-      .fa.fa-minus {
-        display: none;
-      }
     }
   }
 
@@ -2235,22 +3697,57 @@ a.btn {
     .support-block {
       margin-bottom: 40px;
       padding: 20px;
+      box-shadow: $boxShadow;
+      height: 260px;
+      position: relative;
+      &.faqs {
+        height: auto;
+        box-shadow: none;
+        .title {
+          @include poppins(20px, 600, normal);
+          color: #253D83;
+        }
+        .faq-block {
+          padding: 10px;
+          box-shadow: $boxShadow;
+          position: relative;
+          height: 260px;
+          margin: 20px 0;
+
+          .article-title {
+            @include poppins(16px, 500, normal);
+            text-align: center;
+            margin-bottom: 10px; 
+          }
+        }
+      }
+
 
       .title {
-        font-size: 24px;
-        font-weight: 500;
-        font-family: 'Poppins';
+        @include poppins(24px, 500, normal);
+        text-align: center;
         @include s() {
           font-size: 18px;
         }
       }
 
       .content {
-        font-size: 14px;
-        font-weight: 500;
+        @include poppins(14px, 500, normal);
         height: 100px;
         @include s() {
           font-size: 14px;
+        }
+      }
+
+      .action {
+        padding: 20px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        a.btn {
+          display: inline-block;
         }
       }
     }
@@ -2271,13 +3768,11 @@ a.btn {
 
 .faq-section {
   padding: 40px 0;
-  font-family: 'Poppins';
   @include s() {
     padding: 10px 0;
   }
   .title {
-    font-weight: 500;
-    font-size: 24px;
+    @include poppins(24px, 600, normal);
     text-align: center;
     margin: 40px 0;
     @include s() {
@@ -2285,10 +3780,10 @@ a.btn {
     }
   }
   .faq-block {
+    @include poppins(18px, 500, normal);
     box-shadow: $boxShadow;
     padding: 40px 100px;
     margin: 50px 0;
-    font-size: 18px;
     @include s() {
       padding: 20px 10px;
       overflow-x: auto;
@@ -2304,10 +3799,8 @@ a.btn {
 .howto-section {
   background: #f9f9f9;
   padding: 40px 0;
-  font-family: 'Poppins';
   .title {
-    font-weight: 500;
-    font-size: 24px;
+    @include poppins(24px, 600, normal);
     text-align: center;
     margin: 40px 0;
   }
@@ -2316,6 +3809,17 @@ a.btn {
     box-shadow: $boxShadow;
     margin: 50px 0;
     font-size: 18px;
+    .image-block {
+      text-align: center;
+    }
+    .block {
+      padding: 20px;
+      margin: 10px 2em 2em;
+      box-shadow: $boxShadow;
+      @include s() {
+        margin: 10px 0 2em;
+      }
+    }
   }
 
   .body {
@@ -2384,8 +3888,8 @@ a.btn {
         margin: 0;
         margin-top: 10px;
       }
-      &:after {
-        top: 28px;
+      &:before {
+        top: 27px;
       }
     }
   }
@@ -2430,9 +3934,9 @@ a.btn {
   }
 
   .submit-area {
-    margin: 30px 0 0 0;
+    margin: 10px 0 0 0;
     @include m() {
-      margin-top: 10px;
+      margin-top: 5px;
       a.btn {
         display: block;
       }
@@ -2446,6 +3950,727 @@ a.btn {
   }
 }
 
+.about-us {
+
+	.about-block {
+		text-align: justify;
+		width: 100%;
+		max-width: 96%;
+		margin: 0 auto;
+		.title {
+			@include poppins(24px, 600, normal);
+			text-align: center;
+			margin-bottom: 35px;
+			@include s() {
+				margin-top: 35px;
+			}
+		}
+
+		.image {
+			height: 277px;
+			position: relative;
+			.logo-img {
+				display: block;
+			    margin: auto;
+			    position: absolute;
+			    top: 0;
+			    left: 0;
+			    right: 0;
+			    bottom: 0;
+			}
+		}
+
+		.body {
+			padding: 50px 30px;
+			font-size: 18px;
+			line-height: 22px;
+		}
+
+		.social-share {
+			@include poppins(16px, 600, normal);
+			color: #979797;
+		}
+
+		.follow-us {
+			margin: 0px 0 40px;
+			text-align: center;
+		}
+
+		.social-icons {
+			@include flex();
+			flex-direction: row;
+			margin: 10px auto;
+			width: 70%;
+			a {
+				color: #979797;
+				font-size: 30px;
+				&:hover {
+					.fa-facebook {
+						color: #3b5998;
+						transition: 0.3s;
+					}
+					.fa-instagram {
+						color: #fb3958;
+						transition: 0.3s;
+					}
+					.fa-twitter {
+						color: #00aced;
+						transition: 0.3s;
+					}
+					.fa-linkedin {
+						color: #0077B5;
+						transition: 0.3s;
+					}
+					.fa-pinterest-p {
+						color: #cb2027;
+						transition: 0.3s;
+					}
+				}
+			}
+			li {
+				flex: 1
+			}
+		}
+	}
+}
+.support-page {
+  font-family: 'Poppins';
+  padding-top: 25px;
+  padding-bottom: 80px;
+  position: relative;
+  z-index: 1;
+  @include s() {
+    padding: 25px 4% 80px;
+  }
+  &:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: '';
+    background: rgba(#fff, 0.85);
+    z-index: -1;
+  }
+  .title {
+    @include poppins(24px, 600, normal);
+    text-align: center;
+    margin-bottom: 30px;
+    @include s() {
+      font-size: 18px;
+    }
+  }
+
+  .search-bar {
+    text-align: center;
+    margin-bottom: 40px;
+    form {
+      position: relative;
+      input {
+        height: 46px;
+        border-radius: 25px;
+        width: 380px;
+        padding: 5px 50px 5px 25px;
+        @include s() {
+          width: 260px;
+        }
+      }
+      .icon {
+        font-size: 25px;
+        position: absolute;
+        top: 10px;
+        right: 23px;
+      }
+    }
+  }
+
+  .support-tabs {
+    .tab-navigation {
+      @include flex();
+      list-style: none;
+      margin: 0;
+      @include s() {
+        flex-direction: row;
+      }
+    }
+
+    .tab-item {
+      cursor: pointer;
+      margin: 0;
+      padding: 1.9em 2.2em;
+      flex: 1;
+      text-decoration: none;
+      text-align: center;
+      background: #00499e;
+      color: #fff;
+      @include poppins(18px, 600, normal);
+      box-shadow: $boxShadow;
+      @include s() {
+        font-size: 14px;
+        padding: 20px 0;
+        #icon {
+          display: none;
+        }
+      }
+
+      i {
+        float: right;
+        @include s() {
+          padding: 5px 0;
+        }
+      }
+
+      &.active {
+        background: #fff;
+        color: #00499e;
+        transition: 0.3s;
+      }
+    }
+
+    .tab-panels {
+      background: #fff;
+      margin: 0;
+      padding: 30px;
+      box-shadow: $boxShadow;
+      @include s() {
+        background: transparent;
+        box-shadow: none;
+      }
+      a {
+        font-size: 14px;
+        text-decoration: none;
+        color: #2d2d2d;
+        display: block;
+        height: 100%;
+      }
+
+      .tab-panel {
+        display: none;
+        p {
+          padding: 10px 20px;
+          box-shadow: $boxShadow;
+          height: 150px;
+        }
+        .m-pane {
+          @include s() {
+            display: none;
+          }
+        }
+        &.active {
+          display: block;
+        }
+
+        .title {
+          @include poppins(16px, 600, normal);
+          color: #253d83;
+          text-align: left;
+          padding: 0 20px;
+          position: relative;
+          @include s() {
+            background: #fff;
+            color: #000;
+            padding: 20px 20px;
+            margin-right: -30px;
+            font-size: 14px;
+            box-shadow: $boxShadow;
+          }
+          i {
+            display: none;
+            @include s() {
+              display: block;
+              position: absolute;
+              top: 41%;
+              right: 30px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.login-register {
+
+	.row {
+		margin-bottom: 0;
+	}
+
+	.login {
+		background: rgba(#fff, 0.6);
+	}
+
+	.register {
+		background: rgba(#fff, 0.9);
+	}
+
+	.login, 
+	.register {
+		height: 700px;
+		position: relative;
+	}
+
+	.login {
+		@include s() {
+			height: 500px;
+		}
+	}
+
+	#LoginForm,
+	#RegisterForm {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+
+		form {
+			display: block;
+			width: 60%;
+			margin: 20% auto;
+
+			.title {
+				font-family: 'Poppins';
+				font-weight: 600;
+				font-size: 24px;
+				text-align: center;
+				color: #2F3B70;
+				margin-bottom: 35px;
+			}
+
+			label {
+				font-size: 18px;
+				color: #2F3B70;
+				margin-bottom: 10px;
+			}
+
+			input {
+				width: 100%;
+				line-height: normal;
+				height: 48px;
+				background: #fff;
+				box-shadow: $boxShadow;
+				border: none;
+				margin-bottom: 25px;
+				&[type="submit"] {
+					display: none;
+				}
+				&:focus {
+					border: 1px solid #00499E;
+				}
+			}
+
+			.pswd {
+				float: left;
+			}
+
+			.fgt-pswd {
+				float: right;
+				text-decoration: none;
+				color: #979797;
+				font-size: 14px;
+				font-style: italic;
+			}
+
+			a.btn {
+				display: block;
+				float: right;
+				margin: 15px 0; 
+			}
+		}
+	}
+}
+.my-account {
+	position: relative;
+	z-index: 1;
+	&:after {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: -1;
+		content: '';
+		background: rgba(#fff, 0.85);
+	}
+	@include s() {
+		padding: 0 20px;
+	}
+	.crumbs {
+		margin-top: 0;
+		padding-top: 20px;
+	}
+
+	.row {
+		margin-bottom: 0;
+	}
+
+	.page-title {
+		text-align: center;
+		font-size: 18px;
+		color: #2F3B70;
+		padding: 30px 0;
+	}
+	.account-sidebar,
+	.my-cart,
+	.order-history {
+		width: 340px;
+		height: 530px;
+		box-shadow: $boxShadow;
+		display: block;
+		margin: 3em auto 3rem;
+		position: relative;
+		background: #fff;
+		@include m() {
+			width: 100%;
+			
+		}
+		@include s() {
+			width: 100%;
+			margin-bottom: .5rem;
+		}
+	}
+
+	.order-block {
+		box-shadow: $boxShadow;
+		.title {
+			color: #fff;
+			background: #00499E;
+			a {
+				color: #fff;
+			}
+		}
+		.body {
+			padding: 20px;
+		}
+	}
+
+	.title {
+		@include poppins(18px, 600, normal);
+		text-align: center;
+		background: #f1f1f1;
+		padding: 15px 0;
+	}
+
+	.cart-items,
+	.order-body,
+	.account-sb-body {
+		padding: 15px;
+		overflow-x: auto;
+		height: 410px;
+		a {
+			@include poppins(18px, bold, normal);
+			text-decoration: none;
+			color: #2d2d2d;
+		}
+	}
+
+	.cart-items {
+		.item {
+			margin-bottom: 0px;
+		}
+		.price {
+			font-size: 18px;
+		}
+	}
+
+	.my-cart {
+		.total {
+			border-top: 2px solid #f1f1f1;
+			padding: 10px;
+			text-align: right;
+			margin-bottom: 0;
+			padding-right: 25px;
+			position: absolute;
+		    bottom: 0;
+		    left: 0;
+		    right: 0;
+		}
+	}
+}
+
+.recover-password {
+	font-family: 'Poppins';
+	.form.block {
+		text-align: center;
+		display: block;
+		box-shadow: $boxShadow;
+		width: 50%;
+		margin: 0 auto;
+		padding-bottom: 20px;
+		margin-bottom: 45px;
+		@include s() {
+			width: 90%;
+		}
+
+		.title {
+			@include poppins(24px, 600, normal);
+			background: #e5e5e5;
+			padding: 20px;
+			margin-bottom: 25px;
+		}
+
+		.form-body {
+			padding: 20px;
+			form {
+				display: block;
+				width: 65%;
+				margin: 0 auto 40px;
+				@include s() {
+					width: 90%;
+				}
+				label {
+					display: block;
+					text-align: left;
+					padding: 15px 0;
+				}
+
+				input {
+					height: 50px;
+					box-shadow: $boxShadow;
+					display: block;
+					width: 100%;
+					background: #fff;
+					line-height: normal;
+					border: none;
+					margin-bottom: 10px;
+					&:focus {
+						border: 1px solid #00499E;
+					}
+				}
+
+				.actions {
+					margin: 50px 0;
+					.action-hide {
+						display: none;
+					}
+				}
+			}
+		}
+	}
+}
+.widget-yotpo {
+	background: #f9f9f9;
+	padding: 4em 0; 
+	@include s() {
+		.all-reviews {
+			text-align: left!important;
+			margin: 7em 0 2em!important;
+		}
+	}
+}
+
+.yotpo-social {
+	background: #fff;
+	// padding: 4em 0;
+	margin: 0;
+	padding: 0;
+	.yotpo-pictures-gallery, 
+	.yotpo-pictures-widget {
+		margin: 0;
+	}
+}
+.review-page {
+	background: #f9f9f9;
+	.crumbs {
+		margin-top: 0;
+		padding-top: 20px;
+	}
+	.title {
+		@include poppins(24px, 500, normal);
+		text-align: center;
+	}
+	.review-append {
+		@include m() {
+			padding: 0 20px;
+		}
+		@include s() {
+			padding: 0 10px;
+		}
+		.block {
+			padding: 37px 59px;
+			margin: 3em 0;
+			box-shadow: $boxShadow;
+			background: #fff;
+			@include m() {
+				padding: 30px;
+			}
+			@include s() {
+				padding: 20px;
+			}
+
+			.review-score {
+				margin-bottom: 1em;
+				font-size: 24px;
+				.fa {
+					margin-right: 2px; 
+				}
+				.fa-star {
+					color: #ffc000;
+					&.empty {
+						color: #c9c9c9;
+					}
+				}
+				.fa-star-half {
+					position: relative;
+					z-index: 1;
+					color: #ffc000;
+					margin-right: 13px;
+					&:after {
+						content: "\f005";
+						color: #c9c9c9;
+						position: absolute;
+						left: 0;
+						top: 0;
+						bottom: 0;
+						right: 0;
+						z-index: -1;
+					}
+				}
+			}
+
+			p {
+				margin-bottom: 1em;
+			}
+
+			.review-img {
+				position: relative;
+				display: block;
+				width: 75px;
+				height: 75px;
+
+				@include s() {
+					margin-bottom: 10px;
+					margin: auto;
+				}
+				.fa-user-circle {
+					font-size: 4.5em;
+					color: #1cc286;
+					@include s() {
+						display: block;
+					}
+				}
+				.fa-check-circle {
+					position: absolute;
+			    right: 7px;
+			    font-size: 1.5em;
+			    bottom: 6px;
+			    background: #fff;
+			    border-radius: 50%;
+			    color: #00abc7; 
+				}
+			}
+
+			.body {
+				padding-left: 1.5em;
+				@include m() {
+					padding: 0;
+				}
+				@include s() {
+					padding: 0;
+				}
+				.name {
+					display: inline-block;
+					@include roboto(16px, 500, normal);
+				}
+				.review-type {
+					display: inline-block;
+					@include roboto(16px, 500, normal);
+					color: #979797;
+					margin-left: 2em;
+					@include m() {
+						float: right;
+						margin: 0;
+					}
+					@include s() {
+						float: right;
+						margin: 0
+					}
+				}
+				.title {
+					@include roboto(16px, bold, normal);
+					text-align: left;
+				}
+				.content {
+					@include roboto(16px, normal, normal);
+				}
+			}
+
+			.date-votes {
+				position: relative;
+				min-height: 230px;
+				@include m() {
+					min-height: auto;
+				}
+				@include s() {
+					min-height: auto;
+				}
+				.date {
+					position: absolute;
+					right: 0;
+					top: 0;
+					color: #979797;
+					@include m() {
+						position: relative;
+						float: right;
+						line-height: normal;
+						margin: 0;
+					}
+					@include s() {
+						position: relative;
+						float: right;
+						line-height: normal;
+						margin: 0;
+					}
+				}
+				.votes {
+					bottom: 0;
+					right: 0;
+					left: 50px;
+					@include flex();
+					flex-direction: row;
+					position: absolute;
+					@include m() {
+						left: 0;
+						float: left;
+						width: 40%;
+						margin-top: 5px;
+					}
+					@include s() {
+						left: 0;
+						float: left;
+						width: 60%;
+						margin-top: 5px;
+					}
+					.voted-up {
+						color: #00499E;
+					}
+					.voted-down {
+						color: #99212c;
+					}
+					.vote-num,
+					i {
+						flex: 1;
+						font-size: 20px;
+						margin: 0;
+						text-align: right;
+						line-height: normal;
+						@include m() {
+							text-align: center;
+						}
+						@include s() {
+							text-align: center;
+						}
+					}
+
+					i {
+						cursor: pointer;
+					}
+				}
+			}
+		}
+	}
+}
 
 /* Helpers ===================================================================*/
 // Alignment Helpers
@@ -2668,5 +4893,24 @@ a.btn {
 
 // Shopify capture challenge
 .shopify-challenge__container {
-  text-align: center;
+  	text-align: center;
+  	margin: 135px auto;
+	.shopify-challenge__button {
+		display: block;
+		margin: 0 auto;
+		padding: 10px 30px;
+		height: 50px;
+		border-radius: 24px;
+		border: none;
+		box-shadow: $boxShadow;
+		background-color: $colorBtnPrimary;
+	    color: $colorBtnTextPrimary;
+	    &:hover {
+	      background-color: $colorBtnSecondary;
+	      color: $colorBtnTextSecondary;
+	      transition: 0.3s;
+	    }
+	}
 }
+
+

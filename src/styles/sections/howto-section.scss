@@ -1,10 +1,8 @@
 .howto-section {
   background: #f9f9f9;
   padding: 40px 0;
-  font-family: 'Poppins';
   .title {
-    font-weight: 500;
-    font-size: 24px;
+    @include poppins(24px, 600, normal);
     text-align: center;
     margin: 40px 0;
   }
@@ -13,6 +11,17 @@
     box-shadow: $boxShadow;
     margin: 50px 0;
     font-size: 18px;
+    .image-block {
+      text-align: center;
+    }
+    .block {
+      padding: 20px;
+      margin: 10px 2em 2em;
+      box-shadow: $boxShadow;
+      @include s() {
+        margin: 10px 0 2em;
+      }
+    }
   }
 
   .body {

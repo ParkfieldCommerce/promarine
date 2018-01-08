@@ -1,6 +1,6 @@
 /* Global ====================================================================*/
 @import url('https://fonts.googleapis.com/css?family=Roboto');
-@import url('https://fonts.googleapis.com/css?family=Poppins');
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,600,700,800,900');
 
 html {
   height: 100%
@@ -133,13 +133,13 @@ input[type="submit"],
 input[type="reset"],
 select {
   max-width: 100%;
-  height: $gutter;
-  line-height: ($gutter - $borderWeight*2);
+  // height: $gutter;
+  // line-height: ($gutter - $borderWeight*2);
   padding: 0 $gutter/1.5;
-  font-size: 1.125rem;
+  font-size: 16px;
   color: lighten($colorBrand, 25%);
   background-color: $colorBrand;
-  border: $borderWeight $borderStyle $colorBrand;
+  // border: $borderWeight $borderStyle $colorBrand;
   border-radius: $borderRadius;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -212,3 +212,4 @@ a.button {
     color: lighten($colorHighlight, 50%);
   }
 }
+

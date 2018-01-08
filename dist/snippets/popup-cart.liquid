@@ -9,7 +9,7 @@
 <div id="PopupCart" class="popup overlay">
   <div class="popup-inner">
     <div class="popup-content left">
-      <div class="h4">{{ 'cart.title' | t }}</div>
+      <div class="title">{{ 'cart.title' | t }}</div>
       <div class="items" data-item-container>
         {% for item in cart.items %}
           <div class="item">
@@ -20,7 +20,7 @@
               <div class="column l6 m6 s6">
                 {% if item.total_discount > 0 %}
                   <p class="no-margin">
-                    <strong>{% if item.line_price != 0 %}{{ item.line_price | money_with_currency  }}{% else %}Free{% endif %}</strong>
+                    {% if item.line_price != 0 %}{{ item.line_price | money_with_currency  }}{% else %}Free{% endif %}
                     <span> </span>
                     <s class="small">{{ item.original_line_price | money_with_currency }}</s>
                   </p>
@@ -29,10 +29,10 @@
                   {% endfor %}
                 {% else %}
                   <p class="no-margin">
-                    <strong>{{ item.line_price | money_with_currency }}</strong>
+                    {{ item.line_price | money_with_currency }}
                   </p>
                 {% endif %}
-                <p><small><a href="#" data-remove-item data-item-id="{{ item.id }}">Remove</a></small></p>
+                <p><small><a href="#" class="btn primary-btn" data-remove-item data-item-id="{{ item.id }}">Remove</a></small></p>
               </div>
               <div class="column l6 m6 s6 right">
                 <div class="quantity-adjust">
@@ -48,7 +48,7 @@
         {% endfor %}
       </div>
       <hr>
-      <p><small>{{ 'cart.shipping_at_checkout' | t }}</small></p>
+      <p class="at-checkout"><small>{{ 'cart.shipping_at_checkout' | t }}</small></p>
       <div class="row cart-item">
         <div class="column l6 m6 s6">
           <a href="/cart" aria-label="{{ 'cart.view_cart' | t }}">{{ 'cart.view_cart' | t }}</a>
@@ -57,8 +57,8 @@
           <strong>{{ 'cart.total' | t }} <span data-cart-total>{{ cart.total_price | money_with_currency }}</span></strong>
         </div>
       </div>
-      <p class="center"><a href="/cart" class="button wide" aria-label="{{ 'cart.checkout' | t }}">{{ 'cart.checkout' | t }}</a></p>
-      <a href="#close" class="popup-close" data-close data-target="#PopupCart.popup" aria-label="{{ 'common.close' | t }}">{{ 'common.close' | t }}</a>
+      <p class="checkout-btn"><a href="/cart" class="btn primary-btn" aria-label="{{ 'cart.checkout' | t }}">{{ 'cart.checkout' | t }}</a></p>
+      <a href="#close" class="popup-close fa fa-close" data-close data-target="#PopupCart.popup" aria-label="{{ 'common.close' | t }}"></a>
     </div>
   </div>
   {% raw %}
@@ -105,6 +105,6 @@
   </script>
   {% endraw %}
 </div>
-<script>
+{% comment %}<script>
   var cartPopup = new Focus('#PopupCart.popup');
-</script>
+</script>{% endcomment %}

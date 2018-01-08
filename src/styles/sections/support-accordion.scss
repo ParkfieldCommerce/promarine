@@ -7,9 +7,7 @@
   }
 
   .heading {
-    font-family: 'Poppins';
-    font-weight: 500;
-    font-size: 24px;
+    @include poppins(24px, 500, normal);
     text-align: center;
     margin-bottom: 80px;
     @include s() {
@@ -29,9 +27,7 @@
       box-shadow: $boxShadow;
     }
     .lead {
-      font-size: 24px;
-      font-weight: 500;
-      font-family: 'Poppins';
+      @include poppins(24px, 500, normal);
       display: inline-block;
       margin: 0;
       margin-left: 30px;
@@ -50,10 +46,6 @@
         font-size: 20px;
         margin: 3px 0;
       }
-
-      .fa.fa-minus {
-        display: none;
-      }
     }
   }
 
@@ -67,22 +59,57 @@
     .support-block {
       margin-bottom: 40px;
       padding: 20px;
+      box-shadow: $boxShadow;
+      height: 260px;
+      position: relative;
+      &.faqs {
+        height: auto;
+        box-shadow: none;
+        .title {
+          @include poppins(20px, 600, normal);
+          color: #253D83;
+        }
+        .faq-block {
+          padding: 10px;
+          box-shadow: $boxShadow;
+          position: relative;
+          height: 260px;
+          margin: 20px 0;
+
+          .article-title {
+            @include poppins(16px, 500, normal);
+            text-align: center;
+            margin-bottom: 10px; 
+          }
+        }
+      }
+
 
       .title {
-        font-size: 24px;
-        font-weight: 500;
-        font-family: 'Poppins';
+        @include poppins(24px, 500, normal);
+        text-align: center;
         @include s() {
           font-size: 18px;
         }
       }
 
       .content {
-        font-size: 14px;
-        font-weight: 500;
+        @include poppins(14px, 500, normal);
         height: 100px;
         @include s() {
           font-size: 14px;
+        }
+      }
+
+      .action {
+        padding: 20px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        a.btn {
+          display: inline-block;
         }
       }
     }

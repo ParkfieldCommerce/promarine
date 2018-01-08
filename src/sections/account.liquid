@@ -1,0 +1,98 @@
+<!-- /templates/customers/account.liquid -->
+<style>
+  .my-account {
+    background: url({{ section.settings.image_bg | img_url:'master' }});
+    background-size: cover;
+    background-position: 50% 50%;
+  }
+
+  .header-bg {
+    margin-bottom: 0;
+  }
+</style>
+
+<section class="my-account">
+  <div class="container l">
+    
+    <div class="crumbs">
+      {% include 'theme-breadcrumbs' %}
+    </div>
+
+    <h3 class="page-title l-hide m-hide">My Account</h3>
+
+    <div class="row">
+
+      <div class="column l4 m4 s12">
+        <div class="my-cart">
+          <h3 class="title">{{ 'cart.title' | t }} ({{ cart.item_count | t }})</h3>
+          <div class="cart-items">
+            {% for item in cart.items %}
+              <p class="item">
+                <a href="{{ item.product.url }}">{{ item.product.title }}</a>
+                <p class="price">{{ item.price | money }}</p>
+              </p>
+            {% endfor %}
+          </div>
+          <p class="total">Total: {{ cart.total_price | money }}</p>
+        </div>
+      </div>
+
+      <div class="column l4 m4 s12">
+        <div class="order-history">
+          <h3 class="title">{{ 'account.orders.title' | t }}</h3>
+          <div class="order-body">
+            {% paginate customer.orders by 20 %}
+              {% if customer.orders.size != 0 %}
+
+                {% for order in customer.orders %}
+                  <div class="order-block">
+                    <h3 class="title">Order: {{ order.name | link_to: order.customer_url }}</h3>
+                    <div class="body">
+                      <p>Date ordered: {{ order.created_at | date: '%b %d, %Y' }}</p>
+                      <p>Status: {{ order.financial_status_label }} / {{ order.fulfillment_status_label }}</p>
+                      <p>Total: {{ order.total_price | money }}</p>
+                    </div>
+                  </div>
+                {% endfor %}
+
+              {% else %}
+                <p>{{ 'account.orders.none' | t }}</p>
+              {% endif %}
+              {% if paginate.pages > 1 %}
+                <div class="container l">
+                  <hr>
+                  <div class="pagination">
+                    {{ paginate | default_pagination | replace: '&laquo; Previous', 'Previous' | replace: 'Next &raquo;', 'Next' }}
+                  </div>
+                </div>
+              {% endif %}
+            {% endpaginate %}
+          </div>
+        </div>
+      </div>
+
+      <div class="column l4 m4 s12">
+        {% include 'account-sidebar' %}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Account",
+  "class": "account-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "My Account"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_bg",
+      "label": "Background Image"
+    }
+  ]
+}
+{% endschema %}

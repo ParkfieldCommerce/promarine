@@ -7,26 +7,54 @@
       {% for link in linklists['support-articles'].links %}
         {%- assign blog = blogs[link.object.handle] -%}
 
-        <div class="title-bar" id="accordion-toggle">
+        <div class="title-bar home-accordion">
           <h3 class="lead">{{ blog.title }}</h3>
           <div class="accordion-action">
             <i class="fa fa-plus" aria-hidden="true"></i>
-            <i class="fa fa-minus" aria-hidden="true"></i>
           </div>
         </div>
 
         <div class="pane">
           <div class="row">
-
+              
             {% for article in blog.articles limit: section.settings.post_limit %}
-              <div class="column l4 m4 s12 block-{{forloop.index}}">
+              <div class="column l4 m6 s12 block-{{forloop.index}}">
                 <div class="support-block">
                   <h3 class="title">{{ article.title }}</h3>
-                  <p class="content">{{ article.excerpt }}</p>
-                  <a href="{{ article.url }}" class="btn support-btn">{{ 'blog.article.read_more' | t }}</a>
+                  {% comment %}<p class="content">{{ article.excerpt }}</p>{% endcomment %}
+                  <div class="action">
+                    <a href="{{ article.url }}" class="btn support-btn">{{ 'blog.article.read_more' | t }}</a>
+                  </div>
                 </div>
               </div>
             {% endfor %}
+            
+            {% if linklists[link.handle].links.size > 0 %}
+              {% assign childList = linklists[link.handle] %}
+              {% for childlink in childList.links %}
+                {% unless forloop.length == 1 or forloop.length == 2 %}
+                  <div class="column l4 m6 s12 block-{{forloop.index}}">
+                    <div class="support-block faqs">
+                      
+                      <h3 class="title">{{ childlink.object.title }}</h3>
+                     
+                      {% assign blog = blogs[childlink.object.handle] %}
+                      {% for article in blog.articles limit: 6 %}
+                        <div class="faq-block">
+                          <p class="article-title">{{article.title}}</p>
+                          <div class="action">
+                            <a href="{{ article.url }}" class="btn support-btn">{{ 'blog.article.read_more' | t }}</a>
+                          </div>
+                        </div>
+                      {% endfor %}     
+                      
+                    </div>
+                  </div>
+                {% endunless %}
+              {% endfor %}
+            {% endif %}
+
+
 
           </div>
         </div>

@@ -1,0 +1,87 @@
+<section class="article-page howto">
+	<div class="container l">
+		<div class="crumbs">
+			{% include 'theme-breadcrumbs' %}
+		</div>
+		<article class="article howto-article" itemscope itemtype="http://schema.org/Article">
+			<h1 class="title">{{ article.title }}</h1>
+
+			{% capture date %}
+				<time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%-d %B %Y' }}</time>
+			{% endcapture %}
+      <p class="date">{{ date }}</p>
+
+      <div class="article-body">
+      	{% if article.image %}
+      		<div class="howto-feature">
+      			<div class="image-container">
+            	<img src="{{ article.image | img_url:'master' }}" alt="">
+          	</div>
+      		</div>
+    		{% endif %}
+
+    		{% comment %}
+    		=========================================================
+    		In order for how-to content to work
+
+    		<div class="block">
+    			<div class="row">
+
+    				<!--==== If its only content with no image ====-->
+    				<div class="column l12 m12 s12">
+    					<!-- place content here -->
+    				</div>
+    				<!--===========================================-->
+
+    				<!--==== If there's an image ====-->
+    				<div class="column l4 m4 s12">
+    					<!-- place image here -->
+    				</div>
+    				<!--=============================-->
+
+    				<!--==== If its content has an image ====-->
+    				<div class="column l8 m8 s12">
+    					<!-- place content here -->
+    				</div>
+    				<!--=====================================-->
+
+    			</div>
+    		</div>
+    		=========================================================
+    		{% endcomment %}
+
+				{{ article.content }}
+
+      	<h4 class="share">{{ 'social.share.title' | t }}</h4>
+        {% include 'social-sharing' %}
+
+        {% if article.tags.size > 0 %}
+          <p class="tags">
+            <span>{{ 'common.tags' | t }}:</span>
+            {% for tag in article.tags %}
+              <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
+            {% endfor %}
+          </p>
+        {% endif %}
+
+        {% if blog.next_article or blog.previous_article %}
+          <div class="article-paginate">
+            <div class="row">
+              {% if blog.previous_article %}
+                <div class="column l6 left" id="prevArticle">
+                  {{ 'blog.article.previous_article' | t | link_to: blog.previous_article }}
+                </div>
+              {% endif %}
+              {% if blog.next_article %}
+                <div class="column l6 right" id="nextArticle">
+                  {{ 'blog.article.next_article' | t | link_to: blog.next_article }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+
+      </div>
+		</article>
+	</div>
+</section>

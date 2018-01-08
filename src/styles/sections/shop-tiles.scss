@@ -15,9 +15,7 @@
 
   .mb-heading {
     margin-bottom: 20px;
-    font-size: 18px;
-    font-family: 'Poppins';
-    font-weight: 500;
+    @include poppins(18px, 500, normal);
   }
 
   .featured-tile {
@@ -51,9 +49,8 @@
     }
 
     .heading {
-      font-size: 48px;
+      @include poppins(48px, 600, normal);
       color: #fff;
-      font-weight: 600;
       margin-bottom: 38px;
       text-shadow: $boxShadow;
       @include s() {
@@ -102,10 +99,8 @@
       }
 
       .heading {
-        font-family: 'Poppins';
+        @include poppins(20px, 600, normal);
         text-align: right;
-        font-weight: 600;
-        font-size: 20px;
         color: #fff;
         padding-right: 28px;
         margin-top: 20px;

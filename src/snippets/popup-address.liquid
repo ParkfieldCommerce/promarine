@@ -4,12 +4,12 @@
 
   {% when 'add' %}
 
-    <div id="PopupAddress" class="popup overlay">
+    <div id="PopupAddress" class="popup overlay new_address">
       <div class="popup-inner">
         <div class="popup-content">
+          <h4>{{ 'account.address.add' | t }}</h4>
           {% form 'customer_address', customer.new_address %}
-            <h4>{{ 'account.address.add' | t }}</h4>
-
+            
             {{ form.errors | default_errors }}
 
             <label class="clearfix" for="AddressFirstNameNew">{{ 'account.first_name' | t }}</label>
@@ -49,14 +49,18 @@
               <label for="address_default_address_new">{{ 'account.address.set_default' | t }}</label>
             </p>
 
-            <p class="no-margin"><input type="submit" value="{{ 'form.add' | t }}"></p>
-            <p class="no-margin center"><a href="#close" data-close data-target="#PopupAddress">{{ 'form.cancel' | t }}</a></p>
+            <div class="actions">
+              <input type="submit" class="add action-hide" value="{{ 'form.add' | t }}">
+              <a class="btn primary-btn add-address">{{ 'form.add' | t }}</a>
+              <a href="#close" class="btn primary-btn cancel" data-close data-target="#PopupAddress">{{ 'form.cancel' | t }}</a>
+            </div>
 
             {% if form.errors %}
               <script>
                 $(document).ready(function() {
                   var AddressPopup = new Focus('#PopupAddress');
                   AddressPopup.show();
+                  console.log('popup is running');
                 });
               </script>
             {% endif %}
@@ -72,8 +76,9 @@
     <div id="PopupAddress_{{ address.id }}" class="popup overlay edit_address">
       <div class="popup-inner">
         <div class="popup-content">
+          <h4>{{ 'account.address.edit' | t }}</h4>
           {% form 'customer_address', address %}
-            <h4>{{ 'account.address.edit' | t }}</h4>
+            
 
             {{ form.errors | default_errors }}
 
@@ -114,14 +119,18 @@
               <label for="address_default_address_{{ form.id }}">{{ 'account.address.set_default' | t }}</label>
             </p>
 
-            <p class="no-margin"><input type="submit" value="{{ 'account.address.update' | t }}"></p>
-            <p class="no-margin center"><a href="#close" data-close data-target="#PopupAddress_{{ address.id }}">{{ 'form.cancel' | t }}</a></p>
+            <div class="actions">
+              <input type="submit" class="action-hide update" value="{{ 'account.address.update' | t }}">
+              <a class="btn primary-btn update-address">{{ 'account.address.update' | t }}</a>
+              <a href="#close" class="btn primary-btn cancel" data-close data-target="#PopupAddress_{{ address.id }}">{{ 'form.cancel' | t }}</a>
+            </div>
 
             {% if form.errors %}
               <script>
                 $(document).ready(function() {
                   var AddressPopup_{{ address.id }} = new Focus('#PopupAddress_{{ address.id }}');
                   AddressPopup_{{ address.id }}.show();
+                  console.log('popup is running');
                 });
               </script>
             {% endif %}
@@ -133,14 +142,17 @@
     </div>
 
   {% when 'delete' %}
-    <div id="PopupAddressDelete_{{ address.id }}" class="popup overlay">
+    <div id="PopupAddressDelete_{{ address.id }}" class="popup overlay delete_address">
       <div class="popup-inner">
         <div class="popup-content">
           <h4>{{ 'account.address.delete' | t }}</h4>
-          <p>{{ 'account.address.confirm_delete' | t }}</p>
-          <p><a href="#" class="button alternate wide" onclick="Shopify.CustomerAddress.destroy({{ address.id }});return false">{{ 'form.delete' | t }}</a></p>
-          <p class="no-margin center"><a href="#close" data-close data-target="#PopupAddressDelete_{{ address.id }}">{{ 'form.cancel' | t }}</a></p>
-
+          <div class="delete-info">
+            <p>{{ 'account.address.confirm_delete' | t }}</p>
+            <div class="actions">
+              <a href="#" class="btn primary-btn" onclick="Shopify.CustomerAddress.destroy({{ address.id }});return false">{{ 'form.delete' | t }}</a>
+              <a href="#close" class="btn primary-btn cancel" data-close data-target="#PopupAddressDelete_{{ address.id }}">{{ 'form.cancel' | t }}</a>
+            </div>
+          </div>
           <a href="#close" class="popup-close" data-close data-target="#PopupAddressDelete_{{ address.id }}" aria-label="{{ 'common.close' | t }}">{% include 'icon' with 'close' %}</a>
         </div>
       </div>

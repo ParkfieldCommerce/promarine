@@ -1,0 +1,31 @@
+<!-- YOTPO Widget -->
+<section class="widget-yotpo">
+	<div class="container l">
+		{% if template contains 'product' %}
+			<div class="yotpo yotpo-main-widget" 
+				data-product-id="{{ product.id }}" 
+				data-name="{{ product.title | escape }}" 
+				data-url="{{ shop.url }}{{ product.url }}" 
+				data-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}" 
+				data-description="{{ product.description | escape }}"></div>
+		{% else %}
+			<div class="yotpo yotpo-reviews-carousel" 
+			 	data-header-customisation-enabled="1" 
+			 	data-header-customisation-color="#2d2d2d" 
+			 	data-header-customisation-font-size="24" 
+			 	data-header-customisation-text="Certified Reviews" 
+			 	data-header-customisation-alignment="left" 
+			 	data-background-color="transparent" 
+			 	data-mode="top_rated" 
+			 	data-type="site" 
+			 	data-count="9" 
+			 	data-show-bottomline="1" 
+			 	data-autoplay-enabled="1" 
+			 	data-autoplay-speed="3000" 
+			 	data-show-navigation="1" 
+			 	data-testimonials-page-enabled="1" 
+			 	data-testimonials-page-text="See All Reviews" 
+			 	data-testimonials-page-link="#">&nbsp;</div>
+		{% endif %}
+	</div>
+</section>

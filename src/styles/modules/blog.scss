@@ -1,0 +1,164 @@
+.blog-page {
+	@include m() {
+		padding: 0 1%;
+	}
+	@include s() {
+		padding: 0 4%;
+	}
+
+	h1, h4 {
+		@include poppins(24px, 600, normal);
+		text-align: center;
+		margin: 20px 0;
+		a {
+			text-decoration: none;
+			color: #2d2d2d;
+		}
+	}
+
+	h1 {
+		margin-bottom: 60px;
+		@include s() {
+			margin-bottom: 30px;
+		}
+	}
+
+	.latest-article {
+		box-shadow: $boxShadow;
+		padding: 0;
+		margin-bottom: 60px;
+
+		.featured-img {
+			position: relative;
+			.date-block {
+				@include poppins(18px, 600, normal);
+				position: absolute;
+				left: 5px;
+				top: 0;
+				background: #fff;
+				display: block;
+				width: 120px;
+				text-align: center;
+				padding: 15px 0;
+			}
+		}
+
+		.featured-body {
+			padding: 0px 4% 0px;
+			text-align: justify;
+			position: relative;
+			height: 350px;
+			@include m() {
+				height: auto;
+			}
+			@include s() {
+				padding: 0px 20px 20px;
+				height: auto;
+			}
+			p {
+				font-size: 18px;
+				line-height: 27px;
+				@include s() {
+					display: none;
+				}
+			}
+			.action {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				padding: 10px;
+				@include m() {
+					position: relative;
+					padding: 0 0 10px;
+				}
+				@include s() {
+					position: relative;
+					padding: 0 0 10px;
+				}
+			}
+			a.btn {
+		    display: block;
+		    width: 30%;
+		    margin: auto;
+		    margin-top: 20px;
+		    @include m() {
+		    	width: 45%;
+		    }
+		    @include s() {
+		    	width: 70%;
+		    }
+			}
+		}
+
+	}
+
+	.blog-block {
+		box-shadow: $boxShadow;
+		background: #fff;
+    width: 350px;
+    height: 580px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    margin-bottom: 10px;
+    @include m() {
+    	margin-bottom: 35px;
+    }
+    @include s() {
+      	width: 100%;
+      	height: auto;
+    }
+
+    .date-block {
+			position: absolute;
+			top: 0;
+			right: 0px;
+			padding: 10px 20px;
+			background: #fff;
+			z-index: 9;
+    }
+
+    .blog-image {
+		width: 100%;
+		height: 340px;
+
+			img {
+				width: 100%;
+				height: 100%;
+			}
+    }
+
+    .blog-description {
+    	padding: 0 30px;
+    	margin-top: 20px;
+
+    	h4 {
+    		@include poppins(18px, 500, normal);
+    		margin-bottom: 20px;
+    	}
+    }
+
+    .blog-btn {
+    	position: absolute;
+    	left: 0;
+    	right: 0;
+    	bottom: 0;
+    	@include s() {
+    		position: relative;
+    		display: block;
+    		padding: 0 0 10px;
+    	}
+    	a {
+    		display: block;
+    		margin: 0 auto;
+    		margin-bottom: 20px;
+    		width: 50%;
+    	}
+    }
+	}
+
+	.column:nth-child(2n+1).m6 {
+		clear: none;
+	}
+}

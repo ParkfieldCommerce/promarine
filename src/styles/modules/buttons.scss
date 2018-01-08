@@ -17,11 +17,8 @@
 // Header navigation
 .header-navigation {
   a {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 600;
+    @include poppins(18px, 600, normal);
     line-height: normal;
-    font-size: 18px;
     text-decoration: none;
     color: $colorHeaderText;
     &:hover {
@@ -33,16 +30,17 @@
 }
 
 // Button Call
-a.btn {
-  padding: 12px 30px;
+a.btn,
+button.btn {
+  @include poppins(18px, 500, normal);
+  padding: 12px 20px;
   border-radius: 11px;
-  font-size: 18px;
   box-shadow: $boxShadow;
   text-align: center;
   vertical-align: middle;
   text-decoration: none;
   @include s() {
-    font-size: 14px;
+    @include poppins(14px, normal, normal);
   }
 
   // Primary
@@ -85,18 +83,16 @@ a.btn {
     border: 1px solid $colorBtnPrimary;
     color: $colorBtnPrimary;
     border-radius: 0;
-    font-family: Poppins;
-    font-weight: 600;
-    font-size: 20px;
+    @include poppins(20px, 600, normal);
+    padding: 12px 20px;
   }
 
   &.transparent-secondary-btn {
     background-color: rgba(#000, 0);
     border: 3px solid $colorBtnSecondary;
     color: $colorBtnSecondary;
+    padding: 12px 20px;
     border-radius: 0;
-    font-family: Poppins;
-    font-weight: 600;
-    font-size: 20px;
+    @include poppins(20px, 600, normal);
   }
 }

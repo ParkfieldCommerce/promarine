@@ -1,0 +1,21 @@
+.widget-yotpo {
+	background: #f9f9f9;
+	padding: 4em 0; 
+	@include s() {
+		.all-reviews {
+			text-align: left!important;
+			margin: 7em 0 2em!important;
+		}
+	}
+}
+
+.yotpo-social {
+	background: #fff;
+	// padding: 4em 0;
+	margin: 0;
+	padding: 0;
+	.yotpo-pictures-gallery, 
+	.yotpo-pictures-widget {
+		margin: 0;
+	}
+}
