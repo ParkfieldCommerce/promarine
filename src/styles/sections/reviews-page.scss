@@ -9,6 +9,12 @@
 		text-align: center;
 	}
 	.review-append {
+		#loadMore {
+			display: block;
+			margin: auto;
+			margin-bottom: 2em;
+			width: 160px;
+		}
 		@include m() {
 			padding: 0 20px;
 		}
@@ -20,6 +26,7 @@
 			margin: 3em 0;
 			box-shadow: $boxShadow;
 			background: #fff;
+			display: none;
 			@include m() {
 				padding: 30px;
 			}

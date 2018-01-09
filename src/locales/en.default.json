@@ -8,6 +8,10 @@
       "loading": "Loading...",
       "previous": "←",
       "next": "→"
+    },
+    "meta": {
+      "page": "{{ page }}",
+      "tags": "{{ tags }}"
     }
   },
   "date_formats": {

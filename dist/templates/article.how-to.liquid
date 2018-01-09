@@ -12,10 +12,16 @@
       <p class="date">{{ date }}</p>
 
       <div class="article-body">
+        
       	{% if article.image %}
-      		<div class="howto-feature">
-      			<div class="image-container">
-            	<img src="{{ article.image | img_url:'master' }}" alt="">
+      		<div class="howto-feature block">
+      			<div class="row">
+              <div class="column l4 m4 s12">
+                <img src="{{ article.image | img_url:'master' }}" alt="">
+              </div>
+            	<div class="column l8 m8 s12">
+                {{ article.excerpt }}
+              </div>
           	</div>
       		</div>
     		{% endif %}

@@ -187,6 +187,17 @@ $(document).ready(function() {
           $('.stars').stars();
 
         });
+
+        // Load More
+				var loadThis = $('.block');
+
+				loadThis.slice(0,9).fadeIn();
+
+				$('#loadMore').on('click', function(e) {
+					e.preventDefault();
+					$('.block:hidden').slice(0,9).fadeIn();
+				});
+
         // Vote Buttons
 				$('.votes .fa-thumbs-o-up').on('click', function() {
 					voteReviewId = $(this).data('id');
