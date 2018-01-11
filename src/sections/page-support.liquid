@@ -39,6 +39,7 @@
 								{% assign childList = linklists[link.handle] %}
 								{% for childlink in childList.links %}
 
+									<!--==========================================-->
 									{% if forloop.length == 1 or forloop.length == 2 %}
 										{% for article in blog.articles %}
 											<div class="column l4 m4 s12">
@@ -46,6 +47,7 @@
 											</div>
 										{% endfor %}		
 									{% endif %}
+									<!--==========================================-->
 
 									{% unless forloop.length == 1 or forloop.length == 2 %}
 										<div class="column l4 m4 s12">

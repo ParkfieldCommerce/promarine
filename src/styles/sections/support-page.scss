@@ -113,8 +113,6 @@
         display: none;
         p {
           padding: 10px 20px;
-          box-shadow: $boxShadow;
-          height: 150px;
         }
         .m-pane {
           @include s() {
