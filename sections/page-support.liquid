@@ -1,0 +1,96 @@
+<style>
+	.support-page {
+		background: url({{ section.settings.body_bg | img_url:'master' }});
+		background-position: 50% 50%;
+		background-size: cover;
+	}
+
+	.header-bg {
+		margin-bottom: 0;
+	}
+</style>
+<section class="support-page">
+	<div class="container l">
+		<div class="crumbs">
+   		{% include 'theme-breadcrumbs' %}
+  	</div>
+  	<h1 class="title">{{ page.title }}</h1>
+  	<div class="search-bar">
+  		{% include 'form-search-articles' %}
+  	</div>
+		<div class="support-tabs">
+
+			<ul class="tab-navigation" data-tabgroup="support">
+				{% for link in linklists['support-articles'].links %}
+					{%- assign blog = blogs[link.object.handle] -%}
+					<li class="tab-item {% if forloop.index == 1 %}active{% endif %}">
+						{{ blog.title }}
+						<i id="icon" class="fa fa-plus" aria-hidden="true"></i>
+					</li>
+				{% endfor%}
+			</ul>
+
+			<ul class="tab-panels" data-tabgroup="support">
+				{% for link in linklists['support-articles'].links %}
+					{%- assign blog = blogs[link.object.handle] -%}
+					<li class="tab-panel {% if forloop.first %}active{% endif %}">
+						<div class="row">
+							{% if linklists[link.handle].links.size > 0 %}
+								{% assign childList = linklists[link.handle] %}
+								{% for childlink in childList.links %}
+
+									<!--==========================================-->
+									{% if forloop.length == 1 or forloop.length == 2 %}
+										{% for article in blog.articles %}
+											<div class="column l4 m4 s12">
+												<p><a href="{{article.url}}">{{article.title}}</a></p>
+											</div>
+										{% endfor %}		
+									{% endif %}
+									<!--==========================================-->
+
+									
+									<div class="column l4 m4 s12">
+										<h3 class="{% if forloop.index > 3 %} space {% endif %} title sp-accordion">
+											{{ childlink.object.title }}
+											<i class="fa fa-plus" aria-hidden-"true"></i>
+										</h3>
+										{% assign blog = blogs[childlink.object.handle] %}
+										<div class="m-pane">
+											{% for article in blog.articles limit: 6 %}
+												<p><a href="{{article.url}}">{{article.title}}</a></p>
+											{% endfor %}
+										</div>
+									</div>
+									
+
+								{% endfor %}
+							{% endif %}
+						</div>
+					</li>
+				{% endfor%}
+			</ul>
+
+		</div>
+	</div>
+</section>
+
+
+
+{% schema %}
+{
+	"name": "Support Page",
+	"class": "support-page-section",
+	"settings": [
+		{
+			"type": "header",
+			"content": "Support"
+		},
+		{
+			"type": "image_picker",
+			"id": "body_bg",
+			"label": "Background Image for body"
+		}
+	]
+}
+{% endschema %}

@@ -1,0 +1,325 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Concrete",
+    "theme_author": "Elkfox",
+    "theme_version": "2.0.0",
+    "theme_documentation_url": "https:\/\/elkfox.github.io\/Concrete\/",
+    "theme_support_email": "help@elkfox.com"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "header",
+        "content": "General colors"
+      },
+      {
+        "type": "color",
+        "id": "color_brand",
+        "label": "Brand Color",
+        "default": "#EB666B"
+      },
+      {
+        "type": "color",
+        "id": "color_body",
+        "label": "Main Text Color",
+        "default": "#333333"
+      },
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Background Color",
+        "default": "#EFECE8"
+      },
+      {
+        "type": "color",
+        "id": "color_highlight",
+        "label": "Highlight Color",
+        "default": "#6FBBA4"
+      },
+      {
+        "type": "color",
+        "id": "color_alternate",
+        "label": "Alternate Color",
+        "default": "#7A7391"
+      },
+      {
+        "type": "header",
+        "content": "Top Banner"
+      },
+      {
+        "type": "color",
+        "id": "color_banner",
+        "label": "Banner Background Color",
+        "default": "#253D83"
+      },
+      {
+        "type": "color",
+        "id": "color_banner_text",
+        "label": "Banner Text Color",
+        "default": "#fff"
+      },
+      {
+        "type": "header",
+        "content": "Buttons"
+      },
+      {
+        "type": "color",
+        "id": "color_btn_primary",
+        "label": "Primary Button Color",
+        "default": "#253d83"
+      },
+      {
+        "type": "color",
+        "id": "color_btn_secondary",
+        "label": "Secondary Button Color",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "color_btn_text_primary",
+        "label": "Secondary Button Color",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "color_btn_text_secondary",
+        "label": "Secondary Button Color",
+        "default": "#253d83"
+      }
+    ]
+  },
+  {
+    "name": "Fonts",
+    "settings": [
+      {
+        "type": "select",
+        "id": "global_font",
+        "label": "Global Font",
+        "options": [
+          {
+            "value": "'Roboto', sans-serif",
+            "label": "Roboto"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Styles"
+      },
+      {
+        "type": "color",
+        "id": "color_header_text",
+        "label": "Header Text Color",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "color_header_background",
+        "label": "Header Background Color",
+        "default": "#253D83"
+      },
+      {
+        "type": "range",
+        "id": "header_bg_opacity",
+        "min": 0,
+        "max": 1,
+        "step": 0.1,
+        "label": "Header Background Opacity",
+        "default": 0.5
+      },
+      {
+        "type": "range",
+        "id": "banner_font_size",
+        "min": 6,
+        "max": 18,
+        "step": 1,
+        "unit": "px",
+        "label": "Banner Font size",
+        "default": 15
+      },
+      {
+        "type": "range",
+        "id": "header_font_size",
+        "min": 6,
+        "max": 18,
+        "step": 1,
+        "unit": "px",
+        "label": "Header Font size",
+        "default": 16
+      }
+    ]
+  },
+  {
+    "name": "Footer",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_footer_social",
+        "label": "Show social media icons"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_footer_subscribe",
+        "label": "Show a subscribe form"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_gateway_icons",
+        "label": "Show payment gateway icons"
+      }
+    ]
+  },
+  {
+    "name": "Cart page",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "cart_notes_enable",
+        "label": "Enable cart notes"
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_vendor_enable",
+        "label": "Show product vendor"
+      },
+      {
+        "type": "select",
+        "id": "ajax_cart_method",
+        "label": "Cart type",
+        "options": [
+          {
+            "value": "drawer",
+            "label": "Drawer"
+          },
+          {
+            "value": "page",
+            "label": "Page"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Social",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Social Links"
+      },
+      {
+        "type": "text",
+        "id": "social_twitter_link",
+        "label": "Twitter URL",
+        "default": "http:\/\/twitter.com\/shopify",
+        "info": "https:\/\/twitter.com\/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram URL",
+        "default": "http:\/\/instagram.com\/shopify",
+        "info": "http:\/\/instagram.com\/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook link",
+        "default": "http:\/\/facebook.com\/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_pinterest_link",
+        "label": "Pinterest link",
+        "default": "http:\/\/pinterest.com\/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_fancy_link",
+        "label": "Fancy link",
+        "default": "http:\/\/fancy.com\/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_google_plus_link",
+        "label": "Google+ link"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube_link",
+        "label": "YouTube link",
+        "default": "http:\/\/youtube.com\/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_vimeo_link",
+        "label": "Vimeo link",
+        "default": "http:\/\/vimeo.com\/shopify"
+      },
+      {
+        "type": "header",
+        "content": "Sharing"
+      },
+      {
+        "type": "checkbox",
+        "id": "social_sharing_products",
+        "label": "Enable sharing for products",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "social_sharing_blog",
+        "label": "Enable sharing for blog articles",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "share_facebook",
+        "label": "Share on Facebook",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "share_twitter",
+        "label": "Tweet on Twitter",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "share_pinterest",
+        "label": "Pin on Pinterest",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "share_fancy",
+        "label": "Add to Fancy",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "share_google",
+        "label": "+1 on Google Plus",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "share_email",
+        "label": "Share by email",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "print_page",
+        "label": "Print Page",
+        "default": true
+      }
+    ]
+  }
+]

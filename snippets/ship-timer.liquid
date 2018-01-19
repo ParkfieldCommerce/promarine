@@ -1,0 +1,41 @@
+{% comment %}
+-----------------------------------------------------------------------------
+Hey there! This is the markup for the ShipTimer coundown notice.
+
+If you need to make markup or styling changes, then this is the spot.
+
+If you have questions please don't hesitate to contact us. We'll reply within
+one business day.
+
+https://ethercycle.com/shiptimer/support/
+-----------------------------------------------------------------------------
+{% endcomment %}
+
+{% capture should_display_ship_timer %}
+  {% if product == null %}
+    true
+  {% elsif product.inventory_management == null %}
+    true
+  {% else %}
+    {% assign total_stock = 0 %}
+    {%for variant in product.variants %}
+      {% capture i %}{{ total | plus:variant.inventory_quantity }}{%endcapture%}
+      {% assign total_stock = i %}
+    {%endfor%}
+    {% assign total_stock = total_stock | plus: 0 %}
+    {% if total_stock > 0 %}
+      true
+    {% endif %}
+  {% endif %}
+{% endcapture %}
+{% assign should_display_ship_timer = should_display_ship_timer | strip %}
+
+{% if should_display_ship_timer == 'true' %}
+  <script type="text/javascript">
+    var shipTimerData = {{ shop.metafields["ship-timer"]["data"] }};
+  </script>
+
+  <div style="padding:10px 0px;">
+    <span class='ship-timer-display'>{{ shop.metafields["ship-timer"]["fallback_message"] }}</span>
+  </div>
+{% endif %}

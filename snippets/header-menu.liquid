@@ -1,0 +1,18 @@
+<section class="header-navigation">
+  <ul class="menu">
+    {% for link in linklists['header-menu'].links %}
+
+    	<li class="menu-item">
+    		<a class="{{ link.title | downcase }}" href="{{ link.url }}">{{ link.title }}{% if link.links != blank %}{% include 'icon' with 'chevron-down' %}{% endif %}</a>
+    		{% if link.links != blank %}
+	    		<ul class="dropdown">
+	    			{% for childlink in link.links %}
+	    				<li class="sub-item">{{ childlink.title | link_to: childlink.url }}</li>
+	    			{% endfor %}
+	    		</ul>
+	    	{% endif %}
+    	</li>
+
+    {% endfor %}
+  </ul>
+</section>

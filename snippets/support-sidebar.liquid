@@ -1,0 +1,32 @@
+<div class="support-sidebar">
+
+  {% for link in linklists['support-articles'].links %}
+    {%- assign blog = blogs[link.object.handle] -%}
+
+    <h3 class="title-bar">
+      {{ blog.title }}
+      <i class="fa fa-plus" aria-hidden="true"></i>
+    </h3>
+
+    {% if linklists[link.handle].links.size > 0 %}
+      {% assign childList = linklists[link.handle] %}
+      <div class="article-pane">
+      {% for childlink in childList.links %}         
+          <h3 class="section-bar">
+            {{ childlink.object.title }}
+            <i class="fa fa-plus" aria-hidden="true"></i>
+          </h3>
+          {% assign blog = blogs[childlink.object.handle] %}
+          <div class="section-pane">
+            {% for article in blog.articles limit: 6 %}
+              <p class="article-title">
+                <a href="{{ article.url }}">{{ article.title }}</a>
+              </p>
+            {% endfor %}
+          </div>   
+      {% endfor %}
+      </div> 
+    {% endif %}
+  {% endfor %}
+
+</div>

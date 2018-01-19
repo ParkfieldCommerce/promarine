@@ -1,0 +1,317 @@
+{
+  "current": {
+    "color_brand": "#eb666b",
+    "color_body": "#333333",
+    "color_background": "#ffffff",
+    "color_highlight": "#6fbba4",
+    "color_alternate": "#7a7391",
+    "color_banner": "#35d0f7",
+    "color_banner_text": "#fff",
+    "color_btn_primary": "#253d83",
+    "color_btn_secondary": "#fff",
+    "color_btn_text_primary": "#fff",
+    "color_btn_text_secondary": "#253d83",
+    "global_font": "'Roboto', sans-serif",
+    "color_header_text": "#fff",
+    "color_header_background": "#253d83",
+    "header_bg_opacity": 0.5,
+    "banner_font_size": 15,
+    "header_font_size": 18,
+    "enable_footer_social": false,
+    "enable_footer_subscribe": false,
+    "enable_gateway_icons": false,
+    "cart_notes_enable": false,
+    "cart_vendor_enable": false,
+    "ajax_cart_method": "drawer",
+    "social_twitter_link": "https:\/\/twitter.com\/SuppliesPro",
+    "social_instagram_link": "https:\/\/www.instagram.com\/pro_marine_supplies\/",
+    "social_facebook_link": "https:\/\/www.facebook.com\/promarinesupplies\/",
+    "social_pinterest_link": "https:\/\/www.pinterest.com\/promarinesupplies\/?eq=pro%20marine%20supplies&etslf=NaN",
+    "social_fancy_link": "",
+    "social_google_plus_link": "",
+    "social_youtube_link": "",
+    "social_vimeo_link": "",
+    "social_sharing_products": true,
+    "social_sharing_blog": true,
+    "share_facebook": true,
+    "share_twitter": true,
+    "share_pinterest": true,
+    "share_fancy": false,
+    "share_google": true,
+    "share_email": true,
+    "print_page": true,
+    "checkout_header_image": "",
+    "checkout_logo_image": "shopify:\/\/shop_images\/Pro_Marine_Logo_blue_9a35f3ba-5a6a-4246-a347-023288938461.png",
+    "checkout_logo_position": "center",
+    "checkout_logo_size": "medium",
+    "checkout_body_background_image": "",
+    "checkout_body_background_color": "#fff",
+    "checkout_input_background_color_mode": "white",
+    "checkout_sidebar_background_image": "",
+    "checkout_sidebar_background_color": "#fafafa",
+    "checkout_heading_font": "Helvetica Neue",
+    "checkout_body_font": "Helvetica Neue",
+    "checkout_accent_color": "#253d83",
+    "checkout_button_color": "#253d83",
+    "checkout_error_color": "#ff6d6d",
+    "sections": {
+      "theme-header": {
+        "type": "theme-header",
+        "settings": {
+          "banner_text": "FREE 2 day shipping on all orders placed by 6pm (anywhere in the US)",
+          "logo_use_image": true,
+          "logo": "shopify:\/\/shop_images\/Pro_Marine_Logo_white.png",
+          "header_bg_picker": "shopify:\/\/shop_images\/header-water.png",
+          "logo_width": "250",
+          "enable_search": true,
+          "include_products": true,
+          "include_articles": true,
+          "include_pages": true
+        }
+      },
+      "theme-footer": {
+        "type": "theme-footer",
+        "settings": {
+          "footer-bg": "shopify:\/\/shop_images\/image-footer.png",
+          "footer_logo": "shopify:\/\/shop_images\/footer-logo.png",
+          "enable_social": true,
+          "enable_gateway_icons": true,
+          "enable_subscribe": true,
+          "heading": "Subscribe to our mailing list",
+          "email_placeholder": "",
+          "show_button": true,
+          "success": "Thank you for subscribing",
+          "button_text": "Join"
+        }
+      },
+      "1511820419416": {
+        "type": "hero-slider",
+        "blocks": {
+          "1511820419416-0": {
+            "type": "hero_block",
+            "settings": {
+              "image_placement": "right",
+              "image_feature": "shopify:\/\/shop_images\/product.png",
+              "text_feature": "Marine Grade Epoxy for your next masterpiece",
+              "button_text": "Shop Now",
+              "button_url": "shopify:\/\/collections"
+            }
+          },
+          "1511892299635": {
+            "type": "hero_block",
+            "settings": {
+              "image_placement": "left",
+              "image_feature": "shopify:\/\/shop_images\/LaminatingEpoxy1GallonKit__36992.1487968697.1280.1280_1024x1024_ee62dd27-ef10-4fcb-96e5-abe23d46bfbe.png",
+              "text_feature": "Marine Grade Epoxy for your next masterpiece.",
+              "button_text": "Shop Now",
+              "button_url": "shopify:\/\/blogs\/blog\/august-photo-contest-winner"
+            }
+          }
+        },
+        "block_order": [
+          "1511820419416-0",
+          "1511892299635"
+        ],
+        "settings": {
+          "hero_background": "shopify:\/\/shop_images\/hero-background.png"
+        }
+      },
+      "1511965627883": {
+        "type": "shop-tiles",
+        "blocks": {
+          "1511965627883-0": {
+            "type": "shop_tile",
+            "settings": {
+              "block_tile_background": "shopify:\/\/shop_images\/secondary-tile6.png",
+              "block_tile_text": "Marine Epoxy",
+              "block_button_text": "Shop Now",
+              "block_button_url": "shopify:\/\/products\/121-marine-grade-epoxy-resin-kit-for-laminating-and-repairs",
+              "btn_border_bottom": "#5a4faa"
+            }
+          },
+          "1511965627883-1": {
+            "type": "shop_tile",
+            "settings": {
+              "block_tile_background": "shopify:\/\/shop_images\/secondary-tile2.png",
+              "block_tile_text": "Flooring Epoxy",
+              "block_button_text": "Shop Now",
+              "block_button_url": "shopify:\/\/pages\/coming-soon",
+              "btn_border_bottom": "#5da34b"
+            }
+          },
+          "1511965627883-2": {
+            "type": "shop_tile",
+            "settings": {
+              "block_tile_background": "shopify:\/\/shop_images\/secondary-tile4.png",
+              "block_tile_text": "Art Epoxy",
+              "block_button_text": "Shop Now",
+              "block_button_url": "shopify:\/\/products\/crystal-clear-bar-table-top-epoxy-resin-coating-for-wood-tabletop",
+              "btn_border_bottom": "#d81e9a"
+            }
+          }
+        },
+        "block_order": [
+          "1511965627883-0",
+          "1511965627883-1",
+          "1511965627883-2"
+        ],
+        "settings": {
+          "feature_tile_layout": "left",
+          "featured_tile_background": "shopify:\/\/shop_images\/feature-tile.png",
+          "featured_tile_text": "Bar Top Epoxy",
+          "featured_button_text": "Shop Now",
+          "featured_button_url": "shopify:\/\/products\/crystal-clear-bar-table-top-epoxy-resin-coating-for-wood-tabletop",
+          "btn_border_bottom": "#d85454"
+        }
+      },
+      "1511985226054": {
+        "type": "blog-section-slider",
+        "settings": {
+          "title": "Blog",
+          "heading_url": "shopify:\/\/blogs\/blog",
+          "blog": "blog",
+          "post_limit": "9"
+        }
+      },
+      "1512068242514": {
+        "type": "support-accordion",
+        "settings": {
+          "title": "Support Articles",
+          "post_limit": "9"
+        }
+      },
+      "template-product": {
+        "type": "template-product",
+        "blocks": {
+          "1515792508630": {
+            "type": "Banner",
+            "settings": {
+              "bannerImg": "shopify:\/\/shop_images\/26116092_1365538736908229_7851416101790407747_o.jpg",
+              "bannerHeading": "Free 2 Day Shipping",
+              "bannerText": "<p>FREE 2 day shipping on all orders placed by 6pm (anywhere in the US)<\/p>"
+            }
+          },
+          "1516026243108": {
+            "type": "ThreeColumns",
+            "settings": {
+              "img1": "shopify:\/\/shop_images\/Image_2.png",
+              "columnOneHeading": "High Gloss",
+              "text1": "<p>Self leveling, High Gloss UV Resistant Formula<\/p>",
+              "img2": "shopify:\/\/shop_images\/image_3_3c8baeba-66eb-4fe7-80ea-cbef0e5b805c.png",
+              "columnTwoHeading": "Durable",
+              "text2": "<p>Produces a tough, water resistant coating<\/p>",
+              "img3": "shopify:\/\/shop_images\/Image_1.png",
+              "columnThreeHeading": "Versatile",
+              "text3": "<p>Designed for Table Tops, Bars, Art Work and other applications<\/p>"
+            }
+          },
+          "1516027043427": {
+            "type": "TextAndImage",
+            "settings": {
+              "heading": "Pro Marine Crystal Clear Table Top Epoxy",
+              "image": "shopify:\/\/shop_images\/22137009_1285861778209259_4694878621652203672_o.jpg",
+              "text": "<p>There are so many uses for our Table Top Epoxy including Art, Jewelry, Casting, DIY Projects, Epoxy Flooring, Table\/Bar Tops!<\/p>"
+            }
+          }
+        },
+        "block_order": [
+          "1515792508630",
+          "1516026243108",
+          "1516027043427"
+        ],
+        "settings": {
+          "header_bg_picker": "shopify:\/\/shop_images\/header-water.png",
+          "quick_add": true,
+          "breadcrumb_position": "left"
+        }
+      },
+      "collection": {
+        "type": "collection",
+        "blocks": {
+          "1513368824805": {
+            "type": "collection",
+            "settings": {
+              "collection": "all",
+              "product": "crystal-clear-bar-table-top-epoxy-resin-coating-for-wood-tabletop"
+            }
+          }
+        },
+        "block_order": [
+          "1513368824805"
+        ],
+        "settings": {
+          "collection-title-bg": "shopify:\/\/shop_images\/collections-bg.png",
+          "crumb-position": "left",
+          "sort-position": "right"
+        }
+      },
+      "list-collections": {
+        "type": "list-collections",
+        "settings": {
+          "collection-title-bg": "shopify:\/\/shop_images\/collections-bg.png",
+          "crumb-position": "left"
+        }
+      },
+      "page-contact": {
+        "type": "page-contact",
+        "settings": {
+          "body_bg": "shopify:\/\/shop_images\/bg-water.png"
+        }
+      },
+      "page-about": {
+        "type": "page-about",
+        "settings": {
+          "page-heading": "About Pro Marine",
+          "feature_image": "shopify:\/\/shop_images\/Screen_Shot_2017-11-15_at_10.47.png",
+          "logo_img": "shopify:\/\/shop_images\/Group.png",
+          "enable_social_follow": true,
+          "social_title": "Follow Us",
+          "fb_follow": "#",
+          "ig_follow": "#",
+          "tw_follow": "#",
+          "in_follow": "#",
+          "pin_follow": "#"
+        }
+      },
+      "page-support": {
+        "type": "page-support",
+        "settings": {
+          "body_bg": "shopify:\/\/shop_images\/bg-water.png"
+        }
+      },
+      "login-register": {
+        "type": "login-register",
+        "settings": {
+          "login_register_bg": "shopify:\/\/shop_images\/water.png"
+        }
+      },
+      "account": {
+        "type": "account",
+        "settings": {
+          "image_bg": "shopify:\/\/shop_images\/bg-water.png"
+        }
+      },
+      "1515000435161": {
+        "type": "yotpo-widget-homepage",
+        "settings": {}
+      },
+      "1515011629298": {
+        "type": "yotpo-social-media",
+        "settings": {}
+      }
+    },
+    "content_for_index": [
+      "1511820419416",
+      "1511965627883",
+      "1511985226054",
+      "1512068242514",
+      "1515000435161",
+      "1515011629298"
+    ]
+  },
+  "presets": {
+    "Default": {
+      "content_for_index": []
+    }
+  }
+}

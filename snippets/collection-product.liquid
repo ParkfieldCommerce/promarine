@@ -1,0 +1,68 @@
+<!-- /snippets/collection-product.liquid -->
+
+{% unless column_width %}
+ {% assign column_width = 'column l12 m12 s12' %}
+{% endunless %}
+
+{% assign on_sale = false %}
+{% if product.compare_at_price > product.price %}
+ {% assign on_sale = true %}
+{% endif %}
+{% assign sale_price = product.price | money %}
+
+{% assign sold_out = true %}
+{% if product.available %}
+ {% assign sold_out = false %}
+{% endif %}
+
+<div class="{{ column_width }} product-block {% if sold_out %} sold_out {% endif %} {% if on_sale %} on_sale {% endif %}">
+  <div class="product">
+    <div class="product-image">
+      <a href="{{ product.url | within: collection }}">
+        <img srcset="{{ product.featured_image.src | img_url: 'x960' }} 2x" src="{{ product.featured_image.src | img_url: 'x960' }}" alt="{{ product.featured_image.alt | escape }}">
+      </a>
+      <a class="prodFeatureLink" href="{{ product.url | within: collection }}">
+        <div class="product-feature">
+          <div class="action">
+            <span class="shopNowBtn">Shop Now</span>
+          </div>
+        </div>
+      </a>
+    </div>
+    
+    <div class="product-info">
+      <a href="{{ product.url | within: collection }}" class="product-title">{{ product.title }}</a><br>
+      <p>
+        {% if on_sale %}
+          {% if product.price_varies %}
+            {{ 'product.on_sale_from_html' | t: price: sale_price }}
+          {% else %}
+            <strong>{{ 'product.on_sale_html' | t: price: sale_price }}</strong>
+          {% endif %}
+        {% else %}
+          {% if product.price_varies %}
+            {% assign price = product.price | money %}
+            {{ 'product.priced_from_html' | t: price: price }}
+          {% else %}
+            {{ product.price | money }}
+          {% endif %}
+        {% endif %}
+        {% if on_sale %}
+          <span class="hidden">{{ 'product.original_price' | t }}</span>
+          <s>{{ product.compare_at_price | money }}</s>
+        {% endif %}
+      </p>
+      <div class="yotpo bottomLine"
+        data-product-id="{{ product.id }}">
+      </div>
+      <div class="action">
+        <a href="{{ product.url | within: collection }}" {% if sold_out %} class="disabled" disabled{% else %} class="btn primary-btn shopNowBtn" {% comment %}type="submit" name="add" data-quick-add="{{ product.first_available_variant.id }}"{% endcomment %}{% endif %}>
+          <span id="AddToCartText">{% if sold_out %}{{ 'product.sold_out' | t }}{% else %}{% comment %}{{ 'product.add_to_cart' | t }}{% endcomment %}Shop Now{% endif %}</span>
+        </a>
+      </div>
+    </div>
+    
+    
+  </div>
+
+</div>
